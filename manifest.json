@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Smart UI Decompiler",
+  "version": "1.0.0",
+  "description": "Extract clean HTML and CSS from any web element.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage"
+  ],
+  "action": {
+    "default_popup": "popup/index.html",
+    "default_title": "Smart UI Decompiler"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "host_permissions": [
+    "<all_urls>"
+  ]
+}

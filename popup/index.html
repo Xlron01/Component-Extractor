@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart UI Decompiler</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="header">
+    <h2>Smart UI Decompiler</h2>
+    <button id="inspectBtn" class="btn primary">Inspect Element</button>
+  </div>
+
+  <div class="content" id="resultContainer" style="display: none;">
+    <div class="code-header">
+      <span id="codeLabel">Full HTML Document</span>
+      <div class="action-btns">
+        <button id="copyBtn" class="btn secondary">Copy HTML</button>
+        <button id="downloadBtn" class="btn primary">Download .html</button>
+      </div>
+    </div>
+    <pre><code id="htmlCode"></code></pre>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>

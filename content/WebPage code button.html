@@ -1,0 +1,2904 @@
+<html lang="en" class="dark" style=""><plasmo-csui id="plasmo-inspector"></plasmo-csui>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="trustpilot-one-time-domain-verification-id" content="e7fde8c5-aaf9-473a-b59e-d1f4a8847cd8">
+
+    <!-- Static SEO for main domain (aura.build) - removed on subdomains/custom domains -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Remove Aura SEO/marketing tags on subdomains/custom domains BEFORE page renders -->
+    <script>
+        (function () {
+            var h = location.hostname || "";
+            var main = [
+                "aura.build",
+                "aura.page",
+                "aurachat.io",
+                "localhost",
+                "netlify.app",
+                "vercel.app",
+            ];
+            var isMain = main.some(function (d) {
+                return h === d || h.endsWith("." + d);
+            });
+            var remove = false;
+            if (isMain) {
+                var parts = h.split(".");
+                var isLocal = h.endsWith(".localhost");
+                var isPreview =
+                    h.endsWith(".netlify.app") || h.endsWith(".vercel.app");
+                var sub =
+                    parts.length > 2
+                        ? parts[0]
+                        : isLocal && parts.length === 2
+                            ? parts[0]
+                            : "";
+                remove =
+                    ((sub && !isPreview) || (sub && isLocal)) &&
+                    sub.toLowerCase() !== "www";
+            } else {
+                remove = true;
+            }
+            if (remove) {
+                var els = document.querySelectorAll("[data-static-seo]");
+                for (var i = 0; i < els.length; i++)
+                    els[i].parentNode.removeChild(els[i]);
+            }
+        })();
+    </script>
+
+    <!-- Google tag (gtag.js) - internal domains only -->
+    <script>
+        (function () {
+            var h = location.hostname || "";
+            var internal =
+                h === "aura.build" ||
+                h === "www.aura.build" ||
+                h === "beta--aurachatapp.netlify.app" ||
+                h === "localhost" ||
+                h.endsWith(".localhost");
+            if (!internal) return;
+            var s = document.createElement("script");
+            s.async = true;
+            s.src = "https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761";
+            document.head.appendChild(s);
+            window.dataLayer = window.dataLayer || [];
+            window.gtag =
+                window.gtag ||
+                function () {
+                    window.dataLayer.push(arguments);
+                };
+            window.gtag("js", new Date());
+            window.gtag("config", "G-2M6V79H761");
+        })();
+    </script>
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
+
+    <!-- Favicon (Aura domains only; customer domains use their own favicon or none) -->
+    <script>
+        (function () {
+            var h = location.hostname || "";
+            var internal =
+                h === "aura.build" ||
+                h === "www.aura.build" ||
+                h === "aura.page" ||
+                h === "www.aura.page" ||
+                h === "aurachat.io" ||
+                h === "www.aurachat.io" ||
+                h === "beta--aurachatapp.netlify.app" ||
+                h === "localhost";
+            if (!internal) return;
+
+            function addLink(rel, href, media) {
+                var link = document.createElement("link");
+                link.rel = rel;
+                link.href = href;
+                if (rel === "icon") link.type = "image/png";
+                if (media) link.media = media;
+                link.setAttribute("data-static-seo", "true");
+                document.head.appendChild(link);
+            }
+
+            addLink(
+                "icon",
+                "/logo-aura-128-light.png",
+                "(prefers-color-scheme: light)"
+            );
+            addLink(
+                "icon",
+                "/logo-aura-128-dark.png",
+                "(prefers-color-scheme: dark)"
+            );
+            addLink("icon", "/logo-aura-128-light.png");
+            addLink("apple-touch-icon", "/logo-aura-128-light.png");
+        })();
+    </script>
+
+    <!-- Fonts -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap">
+
+    <!-- Iconify Icon Web Component -->
+    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@2.1.0/dist/iconify-icon.min.js"
+        integrity="sha384-GPb5RlngihS9H0z1D137JsvzmeZ7tCpWEF4t5YDoTZyMsPP8S7h7vFDh4XhheU83"
+        crossorigin="anonymous"></script>
+    <script type="module" crossorigin="" src="/assets/index-QlI_eC1k.js"></script>
+    <link rel="stylesheet" crossorigin="" href="/assets/index-BrpEDNZN.css">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
+    <style type="text/css">
+        :where(html[dir="ltr"]),
+        :where([data-sonner-toaster][dir="ltr"]) {
+            --toast-icon-margin-start: -3px;
+            --toast-icon-margin-end: 4px;
+            --toast-svg-margin-start: -1px;
+            --toast-svg-margin-end: 0px;
+            --toast-button-margin-start: auto;
+            --toast-button-margin-end: 0;
+            --toast-close-button-start: 0;
+            --toast-close-button-end: unset;
+            --toast-close-button-transform: translate(-35%, -35%)
+        }
+
+        :where(html[dir="rtl"]),
+        :where([data-sonner-toaster][dir="rtl"]) {
+            --toast-icon-margin-start: 4px;
+            --toast-icon-margin-end: -3px;
+            --toast-svg-margin-start: 0px;
+            --toast-svg-margin-end: -1px;
+            --toast-button-margin-start: 0;
+            --toast-button-margin-end: auto;
+            --toast-close-button-start: unset;
+            --toast-close-button-end: 0;
+            --toast-close-button-transform: translate(35%, -35%)
+        }
+
+        :where([data-sonner-toaster]) {
+            position: fixed;
+            width: var(--width);
+            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+            --gray1: hsl(0, 0%, 99%);
+            --gray2: hsl(0, 0%, 97.3%);
+            --gray3: hsl(0, 0%, 95.1%);
+            --gray4: hsl(0, 0%, 93%);
+            --gray5: hsl(0, 0%, 90.9%);
+            --gray6: hsl(0, 0%, 88.7%);
+            --gray7: hsl(0, 0%, 85.8%);
+            --gray8: hsl(0, 0%, 78%);
+            --gray9: hsl(0, 0%, 56.1%);
+            --gray10: hsl(0, 0%, 52.3%);
+            --gray11: hsl(0, 0%, 43.5%);
+            --gray12: hsl(0, 0%, 9%);
+            --border-radius: 8px;
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            outline: none;
+            z-index: 999999999
+        }
+
+        :where([data-sonner-toaster][data-x-position="right"]) {
+            right: max(var(--offset), env(safe-area-inset-right))
+        }
+
+        :where([data-sonner-toaster][data-x-position="left"]) {
+            left: max(var(--offset), env(safe-area-inset-left))
+        }
+
+        :where([data-sonner-toaster][data-x-position="center"]) {
+            left: 50%;
+            transform: translate(-50%)
+        }
+
+        :where([data-sonner-toaster][data-y-position="top"]) {
+            top: max(var(--offset), env(safe-area-inset-top))
+        }
+
+        :where([data-sonner-toaster][data-y-position="bottom"]) {
+            bottom: max(var(--offset), env(safe-area-inset-bottom))
+        }
+
+        :where([data-sonner-toast]) {
+            --y: translateY(100%);
+            --lift-amount: calc(var(--lift) * var(--gap));
+            z-index: var(--z-index);
+            position: absolute;
+            opacity: 0;
+            transform: var(--y);
+            filter: blur(0);
+            touch-action: none;
+            transition: transform .4s, opacity .4s, height .4s, box-shadow .2s;
+            box-sizing: border-box;
+            outline: none;
+            overflow-wrap: anywhere
+        }
+
+        :where([data-sonner-toast][data-styled="true"]) {
+            padding: 16px;
+            background: var(--normal-bg);
+            border: 1px solid var(--normal-border);
+            color: var(--normal-text);
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 12px #0000001a;
+            width: var(--width);
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 6px
+        }
+
+        :where([data-sonner-toast]:focus-visible) {
+            box-shadow: 0 4px 12px #0000001a, 0 0 0 2px #0003
+        }
+
+        :where([data-sonner-toast][data-y-position="top"]) {
+            top: 0;
+            --y: translateY(-100%);
+            --lift: 1;
+            --lift-amount: calc(1 * var(--gap))
+        }
+
+        :where([data-sonner-toast][data-y-position="bottom"]) {
+            bottom: 0;
+            --y: translateY(100%);
+            --lift: -1;
+            --lift-amount: calc(var(--lift) * var(--gap))
+        }
+
+        :where([data-sonner-toast]) :where([data-description]) {
+            font-weight: 400;
+            line-height: 1.4;
+            color: inherit
+        }
+
+        :where([data-sonner-toast]) :where([data-title]) {
+            font-weight: 500;
+            line-height: 1.5;
+            color: inherit
+        }
+
+        :where([data-sonner-toast]) :where([data-icon]) {
+            display: flex;
+            height: 16px;
+            width: 16px;
+            position: relative;
+            justify-content: flex-start;
+            align-items: center;
+            flex-shrink: 0;
+            margin-left: var(--toast-icon-margin-start);
+            margin-right: var(--toast-icon-margin-end)
+        }
+
+        :where([data-sonner-toast][data-promise="true"]) :where([data-icon])>svg {
+            opacity: 0;
+            transform: scale(.8);
+            transform-origin: center;
+            animation: sonner-fade-in .3s ease forwards
+        }
+
+        :where([data-sonner-toast]) :where([data-icon])>* {
+            flex-shrink: 0
+        }
+
+        :where([data-sonner-toast]) :where([data-icon]) svg {
+            margin-left: var(--toast-svg-margin-start);
+            margin-right: var(--toast-svg-margin-end)
+        }
+
+        :where([data-sonner-toast]) :where([data-content]) {
+            display: flex;
+            flex-direction: column;
+            gap: 2px
+        }
+
+        [data-sonner-toast][data-styled=true] [data-button] {
+            border-radius: 4px;
+            padding-left: 8px;
+            padding-right: 8px;
+            height: 24px;
+            font-size: 12px;
+            color: var(--normal-bg);
+            background: var(--normal-text);
+            margin-left: var(--toast-button-margin-start);
+            margin-right: var(--toast-button-margin-end);
+            border: none;
+            cursor: pointer;
+            outline: none;
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+            transition: opacity .4s, box-shadow .2s
+        }
+
+        :where([data-sonner-toast]) :where([data-button]):focus-visible {
+            box-shadow: 0 0 0 2px #0006
+        }
+
+        :where([data-sonner-toast]) :where([data-button]):first-of-type {
+            margin-left: var(--toast-button-margin-start);
+            margin-right: var(--toast-button-margin-end)
+        }
+
+        :where([data-sonner-toast]) :where([data-cancel]) {
+            color: var(--normal-text);
+            background: rgba(0, 0, 0, .08)
+        }
+
+        :where([data-sonner-toast][data-theme="dark"]) :where([data-cancel]) {
+            background: rgba(255, 255, 255, .3)
+        }
+
+        :where([data-sonner-toast]) :where([data-close-button]) {
+            position: absolute;
+            left: var(--toast-close-button-start);
+            right: var(--toast-close-button-end);
+            top: 0;
+            height: 20px;
+            width: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+            background: var(--gray1);
+            color: var(--gray12);
+            border: 1px solid var(--gray4);
+            transform: var(--toast-close-button-transform);
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 1;
+            transition: opacity .1s, background .2s, border-color .2s
+        }
+
+        :where([data-sonner-toast]) :where([data-close-button]):focus-visible {
+            box-shadow: 0 4px 12px #0000001a, 0 0 0 2px #0003
+        }
+
+        :where([data-sonner-toast]) :where([data-disabled="true"]) {
+            cursor: not-allowed
+        }
+
+        :where([data-sonner-toast]):hover :where([data-close-button]):hover {
+            background: var(--gray2);
+            border-color: var(--gray5)
+        }
+
+        :where([data-sonner-toast][data-swiping="true"]):before {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 100%;
+            z-index: -1
+        }
+
+        :where([data-sonner-toast][data-y-position="top"][data-swiping="true"]):before {
+            bottom: 50%;
+            transform: scaleY(3) translateY(50%)
+        }
+
+        :where([data-sonner-toast][data-y-position="bottom"][data-swiping="true"]):before {
+            top: 50%;
+            transform: scaleY(3) translateY(-50%)
+        }
+
+        :where([data-sonner-toast][data-swiping="false"][data-removed="true"]):before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            transform: scaleY(2)
+        }
+
+        :where([data-sonner-toast]):after {
+            content: "";
+            position: absolute;
+            left: 0;
+            height: calc(var(--gap) + 1px);
+            bottom: 100%;
+            width: 100%
+        }
+
+        :where([data-sonner-toast][data-mounted="true"]) {
+            --y: translateY(0);
+            opacity: 1
+        }
+
+        :where([data-sonner-toast][data-expanded="false"][data-front="false"]) {
+            --scale: var(--toasts-before) * .05 + 1;
+            --y: translateY(calc(var(--lift-amount) * var(--toasts-before))) scale(calc(-1 * var(--scale)));
+            height: var(--front-toast-height)
+        }
+
+        :where([data-sonner-toast])>* {
+            transition: opacity .4s
+        }
+
+        :where([data-sonner-toast][data-expanded="false"][data-front="false"][data-styled="true"])>* {
+            opacity: 0
+        }
+
+        :where([data-sonner-toast][data-visible="false"]) {
+            opacity: 0;
+            pointer-events: none
+        }
+
+        :where([data-sonner-toast][data-mounted="true"][data-expanded="true"]) {
+            --y: translateY(calc(var(--lift) * var(--offset)));
+            height: var(--initial-height)
+        }
+
+        :where([data-sonner-toast][data-removed="true"][data-front="true"][data-swipe-out="false"]) {
+            --y: translateY(calc(var(--lift) * -100%));
+            opacity: 0
+        }
+
+        :where([data-sonner-toast][data-removed="true"][data-front="false"][data-swipe-out="false"][data-expanded="true"]) {
+            --y: translateY(calc(var(--lift) * var(--offset) + var(--lift) * -100%));
+            opacity: 0
+        }
+
+        :where([data-sonner-toast][data-removed="true"][data-front="false"][data-swipe-out="false"][data-expanded="false"]) {
+            --y: translateY(40%);
+            opacity: 0;
+            transition: transform .5s, opacity .2s
+        }
+
+        :where([data-sonner-toast][data-removed="true"][data-front="false"]):before {
+            height: calc(var(--initial-height) + 20%)
+        }
+
+        [data-sonner-toast][data-swiping=true] {
+            transform: var(--y) translateY(var(--swipe-amount, 0px));
+            transition: none
+        }
+
+        [data-sonner-toast][data-swipe-out=true][data-y-position=bottom],
+        [data-sonner-toast][data-swipe-out=true][data-y-position=top] {
+            animation: swipe-out .2s ease-out forwards
+        }
+
+        @keyframes swipe-out {
+            0% {
+                transform: translateY(calc(var(--lift) * var(--offset) + var(--swipe-amount)));
+                opacity: 1
+            }
+
+            to {
+                transform: translateY(calc(var(--lift) * var(--offset) + var(--swipe-amount) + var(--lift) * -100%));
+                opacity: 0
+            }
+        }
+
+        @media (max-width: 600px) {
+            [data-sonner-toaster] {
+                position: fixed;
+                --mobile-offset: 16px;
+                right: var(--mobile-offset);
+                left: var(--mobile-offset);
+                width: 100%
+            }
+
+            [data-sonner-toaster] [data-sonner-toast] {
+                left: 0;
+                right: 0;
+                width: calc(100% - var(--mobile-offset) * 2)
+            }
+
+            [data-sonner-toaster][data-x-position=left] {
+                left: var(--mobile-offset)
+            }
+
+            [data-sonner-toaster][data-y-position=bottom] {
+                bottom: 20px
+            }
+
+            [data-sonner-toaster][data-y-position=top] {
+                top: 20px
+            }
+
+            [data-sonner-toaster][data-x-position=center] {
+                left: var(--mobile-offset);
+                right: var(--mobile-offset);
+                transform: none
+            }
+        }
+
+        [data-sonner-toaster][data-theme=light] {
+            --normal-bg: #fff;
+            --normal-border: var(--gray4);
+            --normal-text: var(--gray12);
+            --success-bg: hsl(143, 85%, 96%);
+            --success-border: hsl(145, 92%, 91%);
+            --success-text: hsl(140, 100%, 27%);
+            --info-bg: hsl(208, 100%, 97%);
+            --info-border: hsl(221, 91%, 91%);
+            --info-text: hsl(210, 92%, 45%);
+            --warning-bg: hsl(49, 100%, 97%);
+            --warning-border: hsl(49, 91%, 91%);
+            --warning-text: hsl(31, 92%, 45%);
+            --error-bg: hsl(359, 100%, 97%);
+            --error-border: hsl(359, 100%, 94%);
+            --error-text: hsl(360, 100%, 45%)
+        }
+
+        [data-sonner-toaster][data-theme=light] [data-sonner-toast][data-invert=true] {
+            --normal-bg: #000;
+            --normal-border: hsl(0, 0%, 20%);
+            --normal-text: var(--gray1)
+        }
+
+        [data-sonner-toaster][data-theme=dark] [data-sonner-toast][data-invert=true] {
+            --normal-bg: #fff;
+            --normal-border: var(--gray3);
+            --normal-text: var(--gray12)
+        }
+
+        [data-sonner-toaster][data-theme=dark] {
+            --normal-bg: #000;
+            --normal-border: hsl(0, 0%, 20%);
+            --normal-text: var(--gray1);
+            --success-bg: hsl(150, 100%, 6%);
+            --success-border: hsl(147, 100%, 12%);
+            --success-text: hsl(150, 86%, 65%);
+            --info-bg: hsl(215, 100%, 6%);
+            --info-border: hsl(223, 100%, 12%);
+            --info-text: hsl(216, 87%, 65%);
+            --warning-bg: hsl(64, 100%, 6%);
+            --warning-border: hsl(60, 100%, 12%);
+            --warning-text: hsl(46, 87%, 65%);
+            --error-bg: hsl(358, 76%, 10%);
+            --error-border: hsl(357, 89%, 16%);
+            --error-text: hsl(358, 100%, 81%)
+        }
+
+        [data-rich-colors=true][data-sonner-toast][data-type=success],
+        [data-rich-colors=true][data-sonner-toast][data-type=success] [data-close-button] {
+            background: var(--success-bg);
+            border-color: var(--success-border);
+            color: var(--success-text)
+        }
+
+        [data-rich-colors=true][data-sonner-toast][data-type=info],
+        [data-rich-colors=true][data-sonner-toast][data-type=info] [data-close-button] {
+            background: var(--info-bg);
+            border-color: var(--info-border);
+            color: var(--info-text)
+        }
+
+        [data-rich-colors=true][data-sonner-toast][data-type=warning],
+        [data-rich-colors=true][data-sonner-toast][data-type=warning] [data-close-button] {
+            background: var(--warning-bg);
+            border-color: var(--warning-border);
+            color: var(--warning-text)
+        }
+
+        [data-rich-colors=true][data-sonner-toast][data-type=error],
+        [data-rich-colors=true][data-sonner-toast][data-type=error] [data-close-button] {
+            background: var(--error-bg);
+            border-color: var(--error-border);
+            color: var(--error-text)
+        }
+
+        .sonner-loading-wrapper {
+            --size: 16px;
+            height: var(--size);
+            width: var(--size);
+            position: absolute;
+            inset: 0;
+            z-index: 10
+        }
+
+        .sonner-loading-wrapper[data-visible=false] {
+            transform-origin: center;
+            animation: sonner-fade-out .2s ease forwards
+        }
+
+        .sonner-spinner {
+            position: relative;
+            top: 50%;
+            left: 50%;
+            height: var(--size);
+            width: var(--size)
+        }
+
+        .sonner-loading-bar {
+            animation: sonner-spin 1.2s linear infinite;
+            background: var(--gray11);
+            border-radius: 6px;
+            height: 8%;
+            left: -10%;
+            position: absolute;
+            top: -3.9%;
+            width: 24%
+        }
+
+        .sonner-loading-bar:nth-child(1) {
+            animation-delay: -1.2s;
+            transform: rotate(.0001deg) translate(146%)
+        }
+
+        .sonner-loading-bar:nth-child(2) {
+            animation-delay: -1.1s;
+            transform: rotate(30deg) translate(146%)
+        }
+
+        .sonner-loading-bar:nth-child(3) {
+            animation-delay: -1s;
+            transform: rotate(60deg) translate(146%)
+        }
+
+        .sonner-loading-bar:nth-child(4) {
+            animation-delay: -.9s;
+            transform: rotate(90deg) translate(146%)
+        }
+
+        .sonner-loading-bar:nth-child(5) {
+            animation-delay: -.8s;
+            transform: rotate(120deg) translate(146%)
+        }
+
+        .sonner-loading-bar:nth-child(6) {
+            animation-delay: -.7s;
+            transform: rotate(150deg) translate(146%)
+        }
+
+        .sonner-loading-bar:nth-child(7) {
+            animation-delay: -.6s;
+            transform: rotate(180deg) translate(146%)
+        }
+
+        .sonner-loading-bar:nth-child(8) {
+            animation-delay: -.5s;
+            transform: rotate(210deg) translate(146%)
+        }
+
+        .sonner-loading-bar:nth-child(9) {
+            animation-delay: -.4s;
+            transform: rotate(240deg) translate(146%)
+        }
+
+        .sonner-loading-bar:nth-child(10) {
+            animation-delay: -.3s;
+            transform: rotate(270deg) translate(146%)
+        }
+
+        .sonner-loading-bar:nth-child(11) {
+            animation-delay: -.2s;
+            transform: rotate(300deg) translate(146%)
+        }
+
+        .sonner-loading-bar:nth-child(12) {
+            animation-delay: -.1s;
+            transform: rotate(330deg) translate(146%)
+        }
+
+        @keyframes sonner-fade-in {
+            0% {
+                opacity: 0;
+                transform: scale(.8)
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1)
+            }
+        }
+
+        @keyframes sonner-fade-out {
+            0% {
+                opacity: 1;
+                transform: scale(1)
+            }
+
+            to {
+                opacity: 0;
+                transform: scale(.8)
+            }
+        }
+
+        @keyframes sonner-spin {
+            0% {
+                opacity: 1
+            }
+
+            to {
+                opacity: .15
+            }
+        }
+
+        @media (prefers-reduced-motion) {
+
+            [data-sonner-toast],
+            [data-sonner-toast]>*,
+            .sonner-loading-bar {
+                transition: none !important;
+                animation: none !important
+            }
+        }
+
+        .sonner-loader {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transform-origin: center;
+            transition: opacity .2s, transform .2s
+        }
+
+        .sonner-loader[data-visible=false] {
+            opacity: 0;
+            transform: scale(.8) translate(-50%, -50%)
+        }
+    </style>
+    <style></style>
+    <script src="https://cloud.umami.is/script.js" defer=""
+        data-website-id="d0e07933-070b-441b-9cb1-cb42d639408e"></script>
+    <script src="https://cdn.promotekit.com/promotekit.js" async=""
+        data-promotekit="4d0d3f9e-8185-4766-aad7-f3b358cdfc70"></script>
+    <title>Animated Generate Button with Icon — HTML/CSS UI Component | Aura</title>
+    <link rel="image_src"
+        href="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/learn-assets/seo-previews/2026-05-22/share-preview.jpg"
+        data-rh="true">
+    <link rel="icon" type="image/png" href="/logo-aura-128-light.png" media="(prefers-color-scheme: light)"
+        data-rh="true">
+    <link rel="icon" type="image/png" href="/logo-aura-128-dark.png" media="(prefers-color-scheme: dark)"
+        data-rh="true">
+    <link rel="icon" type="image/png" href="/logo-aura-128-light.png" data-rh="true">
+    <link rel="apple-touch-icon" href="/logo-aura-128-light.png" data-rh="true">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+        data-rh="true">
+    <meta name="language" content="en" data-rh="true">
+    <meta property="og:image:width" content="1200" data-rh="true">
+    <meta property="og:image:height" content="630" data-rh="true">
+    <meta property="og:image:type" content="image/jpeg" data-rh="true">
+    <meta property="og:site_name" content="Aura" data-rh="true">
+    <meta property="og:locale" content="en_US" data-rh="true">
+    <meta name="twitter:card" content="summary_large_image" data-rh="true">
+    <meta name="twitter:site" content="@AuraBuilds" data-rh="true">
+    <meta name="application-name" content="Aura" data-rh="true">
+    <meta name="apple-mobile-web-app-capable" content="yes" data-rh="true">
+    <meta name="apple-mobile-web-app-title" content="Aura" data-rh="true">
+    <meta name="format-detection" content="telephone=no" data-rh="true">
+    <meta name="theme-color" content="#000000" data-rh="true">
+    <meta name="mobile-web-app-capable" content="yes" data-rh="true">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" data-rh="true">
+    <meta name="googlebot" content="index, follow" data-rh="true">
+    <meta name="google" content="notranslate" data-rh="true">
+    <script type="text/javascript" async=""
+        src="https://googleads.g.doubleclick.net/pagead/viewthroughconversion/17731977471/?random=1781693968183&amp;cv=11&amp;fst=1781693968183&amp;bg=ffffff&amp;guid=ON&amp;async=1&amp;en=gtag.config&amp;gtm=45je66f1v9218448198za200zd9218448198xec&amp;gcd=13l3l3l3l1l1&amp;dma=0&amp;tag_exp=115938465~115938468~119392696~119392704~119456239~119456247~119534189&amp;u_w=1536&amp;u_h=864&amp;url=https%3A%2F%2Fwww.aura.build%2Fcomponent%2F752D825&amp;ref=https%3A%2F%2Fwww.aura.build%2Fcomponents&amp;rcb=13&amp;frm=0&amp;tiba=Aura%20%E2%80%93%20AI%20design%2C%20HTML%20%2B%20Figma%20export&amp;hn=www.googleadservices.com&amp;npa=0&amp;pscdl=noapi&amp;auid=1803390518.1777073609&amp;uaa=x86&amp;uab=64&amp;uafvl=Brave%3B149.0.0.0%7CChromium%3B149.0.0.0%7CNot)A%253BBrand%3B24.0.0.0&amp;uamb=0&amp;uam=&amp;uap=Windows&amp;uapv=19.0.0&amp;uaw=0&amp;data=event%3Dgtag.config&amp;ept=9&amp;rfmt=3&amp;fmt=4"></script>
+    <style></style>
+    <style>
+        .imageye-selected {
+            outline: 2px solid black !important;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5) !important;
+        }
+    </style>
+    <style>
+        .driver-active .driver-overlay,
+        .driver-active * {
+            pointer-events: none
+        }
+
+        .driver-active .driver-active-element,
+        .driver-active .driver-active-element *,
+        .driver-popover,
+        .driver-popover * {
+            pointer-events: auto
+        }
+
+        @keyframes animate-fade-in {
+            0% {
+                opacity: 0
+            }
+
+            to {
+                opacity: 1
+            }
+        }
+
+        .driver-fade .driver-overlay {
+            animation: animate-fade-in .2s ease-in-out
+        }
+
+        .driver-fade .driver-popover {
+            animation: animate-fade-in .2s
+        }
+
+        .driver-popover {
+            all: unset;
+            box-sizing: border-box;
+            color: #2d2d2d;
+            margin: 0;
+            padding: 15px;
+            border-radius: 5px;
+            min-width: 250px;
+            max-width: 300px;
+            box-shadow: 0 1px 10px rgba(0, 0, 0, .4);
+            z-index: 1000000000;
+            position: fixed;
+            top: 0;
+            right: 0;
+            background-color: #fff
+        }
+
+        .driver-popover * {
+            font-family: Helvetica Neue, Inter, ui-sans-serif, "Apple Color Emoji", Helvetica, Arial, sans-serif
+        }
+
+        .driver-popover-title {
+            font: 19px/normal sans-serif;
+            font-weight: 700;
+            display: block;
+            position: relative;
+            line-height: 1.5;
+            zoom: 1;
+            margin: 0
+        }
+
+        .driver-popover-close-btn {
+            all: unset;
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 32px;
+            height: 28px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 500;
+            color: #d2d2d2;
+            z-index: 1;
+            text-align: center;
+            transition: color;
+            transition-duration: .2s
+        }
+
+        .driver-popover-close-btn:hover,
+        .driver-popover-close-btn:focus {
+            color: #2d2d2d
+        }
+
+        .driver-popover-title[style*=block]+.driver-popover-description {
+            margin-top: 5px
+        }
+
+        .driver-popover-description {
+            margin-bottom: 0;
+            font: 14px/normal sans-serif;
+            line-height: 1.5;
+            font-weight: 400;
+            zoom: 1
+        }
+
+        .driver-popover-footer {
+            margin-top: 15px;
+            text-align: right;
+            zoom: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between
+        }
+
+        .driver-popover-progress-text {
+            font-size: 13px;
+            font-weight: 400;
+            color: #727272;
+            zoom: 1
+        }
+
+        .driver-popover-footer button {
+            all: unset;
+            display: inline-block;
+            box-sizing: border-box;
+            padding: 3px 7px;
+            text-decoration: none;
+            text-shadow: 1px 1px 0 #fff;
+            background-color: #fff;
+            color: #2d2d2d;
+            font: 12px/normal sans-serif;
+            cursor: pointer;
+            outline: 0;
+            zoom: 1;
+            line-height: 1.3;
+            border: 1px solid #ccc;
+            border-radius: 3px
+        }
+
+        .driver-popover-footer .driver-popover-btn-disabled {
+            opacity: .5;
+            pointer-events: none
+        }
+
+        :not(body):has(>.driver-active-element) {
+            overflow: hidden !important
+        }
+
+        .driver-no-interaction,
+        .driver-no-interaction * {
+            pointer-events: none !important
+        }
+
+        .driver-popover-footer button:hover,
+        .driver-popover-footer button:focus {
+            background-color: #f7f7f7
+        }
+
+        .driver-popover-navigation-btns {
+            display: flex;
+            flex-grow: 1;
+            justify-content: flex-end
+        }
+
+        .driver-popover-navigation-btns button+button {
+            margin-left: 4px
+        }
+
+        .driver-popover-arrow {
+            content: "";
+            position: absolute;
+            border: 5px solid #fff
+        }
+
+        .driver-popover-arrow-side-over {
+            display: none
+        }
+
+        .driver-popover-arrow-side-left {
+            left: 100%;
+            border-right-color: transparent;
+            border-bottom-color: transparent;
+            border-top-color: transparent
+        }
+
+        .driver-popover-arrow-side-right {
+            right: 100%;
+            border-left-color: transparent;
+            border-bottom-color: transparent;
+            border-top-color: transparent
+        }
+
+        .driver-popover-arrow-side-top {
+            top: 100%;
+            border-right-color: transparent;
+            border-bottom-color: transparent;
+            border-left-color: transparent
+        }
+
+        .driver-popover-arrow-side-bottom {
+            bottom: 100%;
+            border-left-color: transparent;
+            border-top-color: transparent;
+            border-right-color: transparent
+        }
+
+        .driver-popover-arrow-side-center {
+            display: none
+        }
+
+        .driver-popover-arrow-side-left.driver-popover-arrow-align-start,
+        .driver-popover-arrow-side-right.driver-popover-arrow-align-start {
+            top: 15px
+        }
+
+        .driver-popover-arrow-side-top.driver-popover-arrow-align-start,
+        .driver-popover-arrow-side-bottom.driver-popover-arrow-align-start {
+            left: 15px
+        }
+
+        .driver-popover-arrow-align-end.driver-popover-arrow-side-left,
+        .driver-popover-arrow-align-end.driver-popover-arrow-side-right {
+            bottom: 15px
+        }
+
+        .driver-popover-arrow-side-top.driver-popover-arrow-align-end,
+        .driver-popover-arrow-side-bottom.driver-popover-arrow-align-end {
+            right: 15px
+        }
+
+        .driver-popover-arrow-side-left.driver-popover-arrow-align-center,
+        .driver-popover-arrow-side-right.driver-popover-arrow-align-center {
+            top: 50%;
+            margin-top: -5px
+        }
+
+        .driver-popover-arrow-side-top.driver-popover-arrow-align-center,
+        .driver-popover-arrow-side-bottom.driver-popover-arrow-align-center {
+            left: 50%;
+            margin-left: -5px
+        }
+
+        .driver-popover-arrow-none {
+            display: none
+        }
+    </style>
+    <style>
+        @keyframes fadeInSlideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-8px);
+                backdrop-filter: blur(0px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+                backdrop-filter: blur(12px);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+    </style>
+    <link rel="canonical" href="https://www.aura.build/component/752D825" data-rh="true">
+    <link rel="image_src"
+        href="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/components/1760017467837-296ufwjdzui.png"
+        data-rh="true">
+    <meta name="description"
+        content="Interactive call-to-action button styled with Tailwind. Displays star icon and letter-by-letter text swap between “Generate” and “Generating”, ideal for content creation triggers or async actions. HTML/CSS UI component for web design with Tailwind CSS—buttons, sections, hero, cards, and animated backgrounds."
+        data-rh="true">
+    <meta name="keywords"
+        content="button, tailwind, animated, icon, interactive, responsive, cta, html, css, ui components, tailwind css, web design, ui buttons, hero section, animated backgrounds, sections, cards, navbars, pricing, footers, forms"
+        data-rh="true">
+    <meta name="author" content="Sourany Phomhome" data-rh="true">
+    <meta property="og:type" content="article" data-rh="true">
+    <meta property="og:title" content="Animated Generate Button with Icon — HTML/CSS UI Component | Aura"
+        data-rh="true">
+    <meta property="og:description"
+        content="Interactive call-to-action button styled with Tailwind. Displays star icon and letter-by-letter text swap between “Generate” and “Generating”, ideal for content creation triggers or async actions. HTML/CSS UI component for web design with Tailwind CSS—buttons, sections, hero, cards, and animated backgrounds."
+        data-rh="true">
+    <meta property="og:url" content="https://www.aura.build/component/752D825" data-rh="true">
+    <meta property="og:image"
+        content="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/components/1760017467837-296ufwjdzui.png"
+        data-rh="true">
+    <meta property="og:image:secure_url"
+        content="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/components/1760017467837-296ufwjdzui.png"
+        data-rh="true">
+    <meta property="og:image:alt"
+        content="Animated Generate Button with Icon component preview - UI component built with Tailwind CSS"
+        data-rh="true">
+    <meta property="article:published_time" content="2025-10-09T13:44:29.309447+00:00" data-rh="true">
+    <meta property="article:modified_time" content="2026-06-17T06:23:13.591791+00:00" data-rh="true">
+    <meta property="article:section" content="HTML/CSS UI Components" data-rh="true">
+    <meta name="twitter:title" content="Animated Generate Button with Icon — HTML/CSS UI Component | Aura"
+        data-rh="true">
+    <meta name="twitter:description"
+        content="Interactive call-to-action button styled with Tailwind. Displays star icon and letter-by-letter text swap between “Generate” and “Generating”, ideal for content creation triggers or async actions. HTML/CSS UI component for web design with Tailwind CSS—buttons, sections, hero, cards, and animated backgrounds."
+        data-rh="true">
+    <meta name="twitter:image"
+        content="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/components/1760017467837-296ufwjdzui.png"
+        data-rh="true">
+    <meta name="twitter:image:alt"
+        content="Animated Generate Button with Icon component preview - UI component built with Tailwind CSS"
+        data-rh="true">
+    <meta name="twitter:creator" content="@sourany" data-rh="true">
+</head>
+
+<body style="cursor: crosshair;">
+    <div id="root">
+        <script
+            type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Aura","url":"https://www.aura.build","logo":"https://aura.build/logo-aura.svg","sameAs":["https://twitter.com/mengto"]}</script>
+        <script
+            type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Aura","url":"https://www.aura.build","potentialAction":{"@type":"SearchAction","target":"https://www.aura.build/assets?q={search_term_string}","query-input":"required name=search_term_string"}}</script>
+        <script
+            type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.aura.build/"},{"@type":"ListItem","position":2,"name":"UI Components in HTML / TailwindCSS","item":"https://www.aura.build/components"},{"@type":"ListItem","position":3,"name":"Animated Generate Button with Icon","item":"https://www.aura.build/component/752D825"}]}</script>
+        <script
+            type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"Animated Generate Button with Icon","description":"Interactive call-to-action button styled with Tailwind. Displays star icon and letter-by-letter text swap between “Generate” and “Generating”, ideal for content creation triggers or async actions.","programmingLanguage":"HTML","runtimePlatform":"Web Browser","codeRepository":"https://www.aura.build/component/752D825","author":{"@type":"Person","name":"Sourany Phomhome","url":"https://www.aura.build/user/sourany"},"dateCreated":"2025-10-09T13:44:29.309447+00:00","dateModified":"2026-06-17T06:23:13.591791+00:00","keywords":"Animated Generate Button with Icon, HTML CSS components, UI components, Tailwind CSS, web design, UI buttons, hero section, animated backgrounds, sections, cards, navbars, pricing, footers, forms, button, tailwind, animated, icon, interactive, responsive, cta","license":"https://opensource.org/licenses/MIT","codeSampleType":"full solution","targetProduct":{"@type":"SoftwareApplication","name":"Web Browser","applicationCategory":"WebApplication"},"interactionStatistic":[{"@type":"InteractionCounter","interactionType":"https://schema.org/ViewAction","userInteractionCount":5200},{"@type":"InteractionCounter","interactionType":"https://schema.org/ShareAction","userInteractionCount":333}],"image":{"@type":"ImageObject","url":"https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/components/1760017467837-296ufwjdzui.png","description":"Animated Generate Button with Icon component preview"}}</script>
+        <header
+            class="fixed top-0 left-0 right-0 z-50 py-1 sm:py-2 lg:py-4 px-0 sm:px-2 lg:px-12 transition-all duration-300 ease-in-out bg-black/20 backdrop-blur-md border-b border-white/5"
+            style="">
+            <div class="container mx-auto flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <div class="relative"><a class="md:block hidden" href="/"><img src="/logo-aura.svg" alt="Aura Logo"
+                                class="h-10 w-10 transition-all p-1 hover:bg-neutral-900 hover:dark:bg-neutral-900 rounded-xl"></a><button
+                            class="items-center justify-center gap-2 whitespace-nowrap rounded-xl text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-10 md:hidden flex p-1 w-12"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="lucide lucide-menu h-6 w-6">
+                                <line x1="4" x2="20" y1="12" y2="12"></line>
+                                <line x1="4" x2="20" y1="6" y2="6"></line>
+                                <line x1="4" x2="20" y1="18" y2="18"></line>
+                            </svg></button></div>
+                </div>
+                <nav class="hidden md:flex items-center space-x-2"><a
+                        class="text-xs text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1 px-4 py-2 rounded-md"
+                        href="/create">CREATE</a><a
+                        class="text-xs text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1 px-4 py-2 rounded-md"
+                        href="/browse/components">TEMPLATES</a><a
+                        class="text-xs text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1 px-4 py-2 rounded-md"
+                        href="/components">COMPONENTS</a><a
+                        class="text-xs text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1 px-4 py-2 rounded-md"
+                        href="/assets">ASSETS</a><a
+                        class="text-xs text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1 px-4 py-2 rounded-md"
+                        href="/skills">SKILLS</a><a
+                        class="text-xs text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1 px-4 py-2 rounded-md"
+                        href="/design-systems">DESIGN.MD</a><a
+                        class="text-xs text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1 px-4 py-2 rounded-md"
+                        href="/learn/introduction">LEARN</a><a
+                        class="text-xs text-muted-foreground hover:text-foreground transition-colors items-center gap-1 px-4 py-2 rounded-md hidden lg:inline-flex"
+                        href="/pricing">PRICING</a></nav>
+                <div class="flex items-center space-x-4">
+                    <div
+                        class="relative h-6 w-auto bg-neutral-50 dark:bg-neutral-900 px-0.5 py-1 rounded-full border border-neutral-200/50 dark:border-neutral-800 hover:border-neutral-200 dark:hover:border-neutral-700 hidden xl:flex">
+                        <div
+                            class="absolute h-[20px] w-6 top-[1px] bg-white dark:bg-neutral-700 rounded-full transition-all duration-200 ease-in-out shadow-beautiful-md translate-x-[49px]">
+                        </div><button
+                            class="relative -top-[1px] -left-[1px] z-10 flex items-center justify-center h-4 w-6 rounded-full transition-colors text-neutral-500 hover:text-neutral-900 dark:hover:text-white"
+                            aria-label="Light mode" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun h-3 w-3">
+                                <circle cx="12" cy="12" r="4"></circle>
+                                <path d="M12 2v2"></path>
+                                <path d="M12 20v2"></path>
+                                <path d="m4.93 4.93 1.41 1.41"></path>
+                                <path d="m17.66 17.66 1.41 1.41"></path>
+                                <path d="M2 12h2"></path>
+                                <path d="M20 12h2"></path>
+                                <path d="m6.34 17.66-1.41 1.41"></path>
+                                <path d="m19.07 4.93-1.41 1.41"></path>
+                            </svg></button><button
+                            class="relative -top-[1px] left-[1px] z-10 flex items-center justify-center h-4 w-6 rounded-full transition-colors text-neutral-500 hover:text-neutral-900 dark:hover:text-white"
+                            aria-label="System theme" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-monitor h-3 w-3">
+                                <rect width="20" height="14" x="2" y="3" rx="2"></rect>
+                                <line x1="8" x2="16" y1="21" y2="21"></line>
+                                <line x1="12" x2="12" y1="17" y2="21"></line>
+                            </svg></button><button
+                            class="relative -top-[1px] left-[1px] z-10 flex items-center justify-center h-4 w-6 rounded-full transition-colors text-neutral-900 dark:text-white"
+                            aria-label="Dark mode" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon h-3 w-3">
+                                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+                            </svg></button>
+                    </div>
+                    <div class="relative"><span
+                            class="relative flex shrink-0 overflow-hidden rounded-full h-6 w-6 text-xs font-thin text-neutral-500 cursor-pointer"><img
+                                class="aspect-square h-full w-full object-cover" alt="AH"
+                                src="https://lh3.googleusercontent.com/a/ACg8ocKEk_qTg0e35-SaH3Rg0IQJNmY-hnLDkF6LmD2cYjuNDa0UhQ=s96-c"></span>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="min-h-screen my-24 overflow-hidden"
+            style="mask-image: linear-gradient(transparent, black 1%, black 100%, transparent);">
+            <div class="relative mx-auto" style="max-width: 1448px;">
+                <div
+                    class="w-full px-4 md:px-6 py-6 mb-6 flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
+                    <div class="flex flex-col gap-4">
+                        <nav
+                            class="flex items-center gap-2 text-sm text-gray-500 dark:text-neutral-400 transition-colors duration-300">
+                            <a class="hover:text-gray-900 dark:hover:text-white transition-colors duration-300"
+                                href="/components">UI Components in HTML / TailwindCSS</a><span
+                                class="text-gray-300 dark:text-neutral-600">•</span><a
+                                class="hover:text-gray-900 dark:hover:text-white transition-colors duration-300"
+                                href="/components?q=button">button</a></nav>
+                        <h1
+                            class="sm:text-3xl lg:text-4xl xl:text-5xl leading-tight text-2xl font-normal text-gray-900 dark:text-neutral-100 tracking-tighter transition-colors duration-300 max-w-3xl">
+                            Animated Generate Button with Icon</h1>
+                        <div class="flex flex-wrap items-center gap-4"><button
+                                class="hover:opacity-80 transition-opacity">
+                                <div class="flex items-center gap-1.5 text-sm"><img
+                                        src="https://lh3.googleusercontent.com/a/ACg8ocLoQZePAiZWIthvCKEU9ojH9gXKvKMsh4bHnXIlpUcwrvUFJO9F=s96-c"
+                                        alt="Sourany Phomhome"
+                                        class="w-4 h-4 text-[8px] rounded-full object-cover "><span
+                                        class="text-neutral-700 dark:text-neutral-300 truncate text-xs">Sourany
+                                        Phomhome</span></div>
+                            </button>
+                            <div
+                                class="flex items-center gap-1.5 text-sm text-gray-500 dark:text-neutral-400 transition-colors duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="lucide lucide-eye w-4 h-4">
+                                    <path
+                                        d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0">
+                                    </path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg><span class="">5.2k views</span></div>
+                            <div
+                                class="flex items-center gap-1.5 text-sm text-gray-500 dark:text-neutral-400 transition-colors duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="lucide lucide-box w-4 h-4">
+                                    <path
+                                        d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z">
+                                    </path>
+                                    <path d="m3.3 7 8.7 5 8.7-5"></path>
+                                    <path d="M12 22V12"></path>
+                                </svg><span>333 remixes</span></div>
+                            <div
+                                class="flex items-center gap-1.5 text-sm text-gray-500 dark:text-neutral-400 transition-colors duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="lucide lucide-crown w-4 h-4">
+                                    <path
+                                        d="M11.562 3.266a.5.5 0 0 1 .876 0L15.39 8.87a1 1 0 0 0 1.516.294L21.183 5.5a.5.5 0 0 1 .798.519l-2.834 10.246a1 1 0 0 1-.956.734H5.81a1 1 0 0 1-.957-.734L2.02 6.02a.5.5 0 0 1 .798-.519l4.276 3.664a1 1 0 0 0 1.516-.294z">
+                                    </path>
+                                    <path d="M5 21h14"></path>
+                                </svg><span class="">Pro</span></div>
+                        </div>
+                    </div>
+                    <div class="hidden lg:block flex-1"></div>
+                    <div class="flex items-center gap-3 lg:pt-6 flex-shrink-0 lg:self-end"><button
+                            class="inline-flex items-center gap-2 h-11 px-5 rounded-full bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 hover:bg-neutral-800 dark:hover:bg-zinc-100 ring-1 ring-neutral-300 dark:ring-white/20 text-sm font-medium transition shadow-[0_2.8px_2.2px_rgba(0,_0,_0,_0.034),_0_6.7px_5.3px_rgba(0,_0,_0,_0.048),_0_12.5px_10px_rgba(0,_0,_0,_0.06),_0_22.3px_17.9px_rgba(0,_0,_0,_0.072),_0_41.8px_33.4px_rgba(0,_0,_0,_0.086),_0_100px_80px_rgba(0,_0,_0,_0.12)]">Upgrade
+                            to Pro<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="lucide lucide-arrow-right w-4 h-4">
+                                <path d="M5 12h14"></path>
+                                <path d="m12 5 7 7-7 7"></path>
+                            </svg></button></div>
+                </div>
+                <div class="flex justify-center ">
+                    <div class="relative inline-block p-2 bg-neutral-50 dark:bg-black/20">
+                        <div class="absolute h-0 border-t border-black/5 dark:border-white/5 top-0 left-0 right-0 pointer-events-none"
+                            style="width: 4000px; margin-left: -2000px;"></div>
+                        <div class="absolute h-0 border-b border-black/5 dark:border-white/5 bottom-0 left-0 right-0 pointer-events-none"
+                            style="width: 4000px; margin-left: -2000px;"></div>
+                        <div class="absolute w-0 border-l border-black/5 dark:border-white/5 top-0 bottom-0 left-0 pointer-events-none"
+                            style="height: 4000px; margin-top: -2000px;"></div>
+                        <div class="absolute w-0 border-r border-black/5 dark:border-white/5 top-0 bottom-0 right-0 pointer-events-none"
+                            style="height: 4000px; margin-top: -2000px;"></div>
+                        <div class="relative pointer-events-auto">
+                            <div
+                                class="bg-gradient-to-b bg-white shadow-sm dark:from-neutral-900 dark:to-neutral-800 border border-white/5 rounded-2xl py-7 w-full mx-auto">
+                                <div class="w-full px-4 md:px-6">
+                                    <section class="mb-10">
+                                        <div class="flex justify-center">
+                                            <div class="bg-white dark:bg-neutral-900 border border-gray-200 dark:border-neutral-800 rounded-lg overflow-hidden transition-all duration-500 ease-in-out shadow-[0px_0px_0px_1px_rgba(0,0,0,0.03),0px_1px_1px_-0.5px_rgba(0,0,0,0.03),0px_3px_3px_-1.5px_rgba(0,0,0,0.03),_0px_6px_6px_-3px_rgba(0,0,0,0.03),0px_12px_12px_-6px_rgba(0,0,0,0.03),0px_24px_24px_-12px_rgba(0,0,0,0.06)]"
+                                                style="width: 100%; max-width: 100%;">
+                                                <div
+                                                    class="flex items-center justify-between gap-2 px-4 py-2 bg-gray-50 dark:bg-neutral-900 border-b border-gray-200 dark:border-neutral-800 transition-colors duration-300">
+                                                    <div class="flex gap-1.5"><span
+                                                            class="w-2.5 h-2.5 rounded-full bg-gray-300 dark:bg-neutral-700"></span><span
+                                                            class="w-2.5 h-2.5 rounded-full bg-gray-300 dark:bg-neutral-700"></span><span
+                                                            class="w-2.5 h-2.5 rounded-full bg-gray-300 dark:bg-neutral-700"></span>
+                                                    </div>
+                                                    <div class="flex items-center bg-neutral-100/70 dark:bg-neutral-800/70 rounded-lg p-0.5 border border-gray-200 dark:border-neutral-700"
+                                                        role="tablist" aria-label="Component view switch"><button
+                                                            class="flex items-center gap-1 px-2 py-0.5 text-[10px] font-medium rounded-md transition-all bg-white dark:bg-neutral-700 text-gray-900 dark:text-white shadow-sm"
+                                                            role="tab" aria-selected="true"><svg
+                                                                xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                height="24" viewBox="0 0 24 24" fill="none"
+                                                                stroke="currentColor" stroke-width="2"
+                                                                stroke-linecap="round" stroke-linejoin="round"
+                                                                class="lucide lucide-eye h-3 w-3 opacity-70">
+                                                                <path
+                                                                    d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"
+                                                                    class=""></path>
+                                                                <circle cx="12" cy="12" r="3" class=""></circle>
+                                                            </svg>Preview</button><button
+                                                            class="flex items-center gap-1 px-2 py-0.5 text-[10px] font-medium rounded-md transition-all text-gray-500 dark:text-neutral-400 hover:text-gray-700 dark:hover:text-neutral-300"
+                                                            role="tab" aria-selected="false"><svg
+                                                                xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                height="24" viewBox="0 0 24 24" fill="none"
+                                                                stroke="currentColor" stroke-width="2"
+                                                                stroke-linecap="round" stroke-linejoin="round"
+                                                                class="lucide lucide-code h-3 w-3 opacity-70">
+                                                                <polyline points="16 18 22 12 16 6" class=""></polyline>
+                                                                <polyline points="8 6 2 12 8 18"></polyline>
+                                                            </svg>Code</button></div>
+                                                    <div
+                                                        class="hidden md:flex items-center bg-neutral-100/70 dark:bg-neutral-800/70 rounded-lg p-0.5 border border-gray-200 dark:border-neutral-700">
+                                                        <button
+                                                            class="flex items-center gap-1 px-1.5 py-0.5 text-xs font-medium rounded-md transition-all bg-white dark:bg-neutral-700 text-gray-900 dark:text-white shadow-sm"
+                                                            title="Desktop"><svg xmlns="http://www.w3.org/2000/svg"
+                                                                width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                                stroke="currentColor" stroke-width="2"
+                                                                stroke-linecap="round" stroke-linejoin="round"
+                                                                class="lucide lucide-monitor h-3 w-3 opacity-60">
+                                                                <rect width="20" height="14" x="2" y="3" rx="2"></rect>
+                                                                <line x1="8" x2="16" y1="21" y2="21"></line>
+                                                                <line x1="12" x2="12" y1="17" y2="21"></line>
+                                                            </svg></button><button
+                                                            class="flex items-center gap-1 px-1.5 py-0.5 text-xs font-medium rounded-md transition-all text-gray-500 dark:text-neutral-400 hover:text-gray-700 dark:hover:text-neutral-300"
+                                                            title="Tablet"><svg xmlns="http://www.w3.org/2000/svg"
+                                                                width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                                stroke="currentColor" stroke-width="2"
+                                                                stroke-linecap="round" stroke-linejoin="round"
+                                                                class="lucide lucide-tablet h-3 w-3 opacity-60">
+                                                                <rect width="16" height="20" x="4" y="2" rx="2" ry="2">
+                                                                </rect>
+                                                                <line x1="12" x2="12.01" y1="18" y2="18"></line>
+                                                            </svg></button><button
+                                                            class="flex items-center gap-1 px-1.5 py-0.5 text-xs font-medium rounded-md transition-all text-gray-500 dark:text-neutral-400 hover:text-gray-700 dark:hover:text-neutral-300"
+                                                            title="Mobile"><svg xmlns="http://www.w3.org/2000/svg"
+                                                                width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                                stroke="currentColor" stroke-width="2"
+                                                                stroke-linecap="round" stroke-linejoin="round"
+                                                                class="lucide lucide-smartphone h-3 w-3 opacity-60">
+                                                                <rect width="14" height="20" x="5" y="2" rx="2" ry="2">
+                                                                </rect>
+                                                                <path d="M12 18h.01"></path>
+                                                            </svg></button></div>
+                                                </div>
+                                                <div class="relative bg-white dark:bg-neutral-900 transition-all duration-500 ease-in-out"
+                                                    style="aspect-ratio: 16 / 10;"><iframe
+                                                        title="Preview of Animated Generate Button with Icon"
+                                                        class="w-full h-full border-0" sandbox="allow-scripts" srcdoc="
+                              &lt;!DOCTYPE html&gt;
+                              &lt;html lang=&quot;en&quot;&gt;
+                              &lt;head&gt;
+                                &lt;meta charset=&quot;UTF-8&quot;&gt;
+                                &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+                                &lt;title&gt;Component Preview&lt;/title&gt;
+                                &lt;script src=&quot;https://cdn.tailwindcss.com&quot;&gt;&lt;/script&gt;
+                                &lt;style&gt;
+                                  html, body { height: 100%; margin: 0; padding: 0; }
+                                  body { height: 100%; overflow: auto; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #000000; color: #ffffff; }
+                                  .component-wrapper { width: 100%; height: 100%; padding: 0; box-sizing: border-box; overflow: auto; }
+                                &lt;/style&gt;
+                              &lt;/head&gt;
+                              &lt;body&gt;
+                                &lt;div class=&quot;component-wrapper&quot;&gt;
+                                  &lt;html lang=&quot;en&quot;&gt;&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+
+  &lt;!-- Tailwind (CDN build is fine for quick paste) --&gt;
+  &lt;script src=&quot;https://cdn.tailwindcss.com&quot;&gt;&lt;/script&gt;
+
+  &lt;!-- Optional font to match the original --&gt;
+  &lt;link href=&quot;https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&amp;amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+
+
+
+  &lt;style&gt;
+    /* ---------- Core styles that Tailwind can’t express (pseudo-elements, keyframes, multi-shadows) ---------- */
+    .btn-wrapper {
+      position: relative;
+      display: inline-block;
+    }
+
+    .btn {
+      --border-radius: 24px;
+      --padding: 4px;
+      --transition: 0.4s;
+      --button-color: #101010;
+      --highlight-color-hue: 210deg;
+      /* Change this hue to recolor the glow */
+
+      user-select: none;
+      display: flex;
+      justify-content: center;
+
+      background-color: var(--button-color);
+
+      /* Complex layered shadows */
+      box-shadow:
+        inset 0px 1px 1px rgba(255, 255, 255, 0.2),
+        inset 0px 2px 2px rgba(255, 255, 255, 0.15),
+        inset 0px 4px 4px rgba(255, 255, 255, 0.1),
+        inset 0px 8px 8px rgba(255, 255, 255, 0.05),
+        inset 0px 16px 16px rgba(255, 255, 255, 0.05),
+        0px -1px 1px rgba(0, 0, 0, 0.02),
+        0px -2px 2px rgba(0, 0, 0, 0.03),
+        0px -4px 4px rgba(0, 0, 0, 0.05),
+        0px -8px 8px rgba(0, 0, 0, 0.06),
+        0px -16px 16px rgba(0, 0, 0, 0.08);
+
+      border: solid 1px #ffffff22;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+
+      transition:
+        box-shadow var(--transition),
+        border var(--transition),
+        background-color var(--transition);
+    }
+
+    .btn::before {
+      content: &quot;&quot;;
+      position: absolute;
+      top: calc(0px - var(--padding));
+      left: calc(0px - var(--padding));
+      width: calc(100% + var(--padding) * 2);
+      height: calc(100% + var(--padding) * 2);
+      border-radius: calc(var(--border-radius) + var(--padding));
+      pointer-events: none;
+      background-image: linear-gradient(0deg, #0004, #000a);
+      z-index: -1;
+      transition:
+        box-shadow var(--transition),
+        filter var(--transition);
+      box-shadow:
+        0 -8px 8px -6px #0000 inset,
+        0 -16px 16px -8px #00000000 inset,
+        1px 1px 1px #fff2,
+        2px 2px 2px #fff1,
+        -1px -1px 1px #0002,
+        -2px -2px 2px #0001;
+    }
+
+    .btn::after {
+      content: &quot;&quot;;
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      pointer-events: none;
+      background-image: linear-gradient(0deg,
+          #fff,
+          hsl(var(--highlight-color-hue), 100%, 70%),
+          hsla(var(--highlight-color-hue), 100%, 70%, 50%),
+          8%,
+          transparent);
+      background-position: 0 0;
+      opacity: 0;
+      transition: opacity var(--transition), filter var(--transition);
+    }
+
+    .btn-letter {
+      position: relative;
+      display: inline-block;
+      color: #ffffff55;
+      animation: letter-anim 2s ease-in-out infinite;
+      transition: color var(--transition), text-shadow var(--transition), opacity var(--transition);
+    }
+
+    @keyframes letter-anim {
+      50% {
+        text-shadow: 0 0 3px #ffffff88;
+        color: #fff;
+      }
+    }
+
+    .btn-svg {
+      flex-grow: 1;
+      height: 24px;
+      margin-right: 0.5rem;
+      fill: #e8e8e8;
+      animation: flicker 2s linear infinite;
+      animation-delay: 0.5s;
+      filter: drop-shadow(0 0 2px #ffffff99);
+      transition: fill var(--transition), filter var(--transition), opacity var(--transition);
+    }
+
+    @keyframes flicker {
+      50% {
+        opacity: 0.3;
+      }
+    }
+
+    .txt-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      min-width: 6.4em;
+    }
+
+    .txt-1,
+    .txt-2 {
+      position: absolute;
+      word-spacing: -1em;
+    }
+
+    .txt-1 {
+      animation: appear-anim 1s ease-in-out forwards;
+    }
+
+    .txt-2 {
+      opacity: 0;
+    }
+
+    @keyframes appear-anim {
+      0% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    .btn:focus .txt-1,
+    .btn:focus-visible .txt-1 {
+      animation: opacity-anim 0.3s ease-in-out forwards;
+      animation-delay: 1s;
+    }
+
+    .btn:focus .txt-2,
+    .btn:focus-visible .txt-2 {
+      animation: opacity-anim 0.3s ease-in-out reverse forwards;
+      animation-delay: 1s;
+    }
+
+    @keyframes opacity-anim {
+      0% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0;
+      }
+    }
+
+    .btn:focus .btn-letter,
+    .btn:focus-visible .btn-letter {
+      animation:
+        focused-letter-anim 1s ease-in-out forwards,
+        letter-anim 1.2s ease-in-out infinite;
+      animation-delay: 0s, 1s;
+    }
+
+    @keyframes focused-letter-anim {
+
+      0%,
+      100% {
+        filter: blur(0px);
+      }
+
+      50% {
+        transform: scale(2);
+        filter: blur(10px) brightness(150%) drop-shadow(-36px 12px 12px hsl(var(--highlight-color-hue), 100%, 70%));
+      }
+    }
+
+    .btn:focus .btn-svg,
+    .btn:focus-visible .btn-svg {
+      animation-duration: 1.2s;
+      animation-delay: 0.2s;
+    }
+
+    .btn:focus::before,
+    .btn:focus-visible::before {
+      box-shadow:
+        0 -8px 12px -6px #fff3 inset,
+        0 -16px 16px -8px hsla(var(--highlight-color-hue), 100%, 70%, 20%) inset,
+        1px 1px 1px #fff3,
+        2px 2px 2px #fff1,
+        -1px -1px 1px #0002,
+        -2px -2px 2px #0001;
+    }
+
+    .btn:focus::after,
+    .btn:focus-visible::after {
+      opacity: 0.6;
+      -webkit-mask-image: linear-gradient(0deg, #fff, transparent);
+      mask-image: linear-gradient(0deg, #fff, transparent);
+      filter: brightness(100%);
+    }
+
+    /* Staggered delays for each letter */
+    .btn-letter:nth-child(1),
+    .btn:focus .btn-letter:nth-child(1),
+    .btn:focus-visible .btn-letter:nth-child(1) {
+      animation-delay: 0s;
+    }
+
+    .btn-letter:nth-child(2),
+    .btn:focus .btn-letter:nth-child(2),
+    .btn:focus-visible .btn-letter:nth-child(2) {
+      animation-delay: 0.08s;
+    }
+
+    .btn-letter:nth-child(3),
+    .btn:focus .btn-letter:nth-child(3),
+    .btn:focus-visible .btn-letter:nth-child(3) {
+      animation-delay: 0.16s;
+    }
+
+    .btn-letter:nth-child(4),
+    .btn:focus .btn-letter:nth-child(4),
+    .btn:focus-visible .btn-letter:nth-child(4) {
+      animation-delay: 0.24s;
+    }
+
+    .btn-letter:nth-child(5),
+    .btn:focus .btn-letter:nth-child(5),
+    .btn:focus-visible .btn-letter:nth-child(5) {
+      animation-delay: 0.32s;
+    }
+
+    .btn-letter:nth-child(6),
+    .btn:focus .btn-letter:nth-child(6),
+    .btn:focus-visible .btn-letter:nth-child(6) {
+      animation-delay: 0.40s;
+    }
+
+    .btn-letter:nth-child(7),
+    .btn:focus .btn-letter:nth-child(7),
+    .btn:focus-visible .btn-letter:nth-child(7) {
+      animation-delay: 0.48s;
+    }
+
+    .btn-letter:nth-child(8),
+    .btn:focus .btn-letter:nth-child(8),
+    .btn:focus-visible .btn-letter:nth-child(8) {
+      animation-delay: 0.56s;
+    }
+
+    .btn-letter:nth-child(9),
+    .btn:focus .btn-letter:nth-child(9),
+    .btn:focus-visible .btn-letter:nth-child(9) {
+      animation-delay: 0.64s;
+    }
+
+    .btn-letter:nth-child(10),
+    .btn:focus .btn-letter:nth-child(10),
+    .btn:focus-visible .btn-letter:nth-child(10) {
+      animation-delay: 0.72s;
+    }
+
+    .btn-letter:nth-child(11),
+    .btn:focus .btn-letter:nth-child(11),
+    .btn:focus-visible .btn-letter:nth-child(11) {
+      animation-delay: 0.80s;
+    }
+
+    .btn-letter:nth-child(12),
+    .btn:focus .btn-letter:nth-child(12),
+    .btn:focus-visible .btn-letter:nth-child(12) {
+      animation-delay: 0.88s;
+    }
+
+    .btn-letter:nth-child(13),
+    .btn:focus .btn-letter:nth-child(13),
+    .btn:focus-visible .btn-letter:nth-child(13) {
+      animation-delay: 0.96s;
+    }
+
+    /* Active state */
+    .btn:active {
+      border: solid 1px hsla(var(--highlight-color-hue), 100%, 80%, 0.7);
+      background-color: hsla(var(--highlight-color-hue), 50%, 20%, 0.5);
+    }
+
+    .btn:active::before {
+      box-shadow:
+        0 -8px 12px -6px #fffa inset,
+        0 -16px 16px -8px hsla(var(--highlight-color-hue), 100%, 70%, 0.8) inset,
+        1px 1px 1px #fff4,
+        2px 2px 2px #fff2,
+        -1px -1px 1px #0002,
+        -2px -2px 2px #0001;
+    }
+
+    .btn:active::after {
+      opacity: 1;
+      -webkit-mask-image: linear-gradient(0deg, #fff, transparent);
+      mask-image: linear-gradient(0deg, #fff, transparent);
+      filter: brightness(200%);
+    }
+
+    .btn:active .btn-letter {
+      text-shadow: 0 0 1px hsla(var(--highlight-color-hue), 100%, 90%, 0.9);
+      animation: none;
+    }
+
+    /* Hover state */
+    .btn:hover {
+      border: solid 1px hsla(var(--highlight-color-hue), 100%, 80%, 0.4);
+    }
+
+    .btn:hover::before {
+      box-shadow:
+        0 -8px 8px -6px #fffa inset,
+        0 -16px 16px -8px hsla(var(--highlight-color-hue), 100%, 70%, 0.3) inset,
+        1px 1px 1px #fff2,
+        2px 2px 2px #fff1,
+        -1px -1px 1px #0002,
+        -2px -2px 2px #0001;
+    }
+
+    .btn:hover::after {
+      opacity: 1;
+      -webkit-mask-image: linear-gradient(0deg, #fff, transparent);
+      mask-image: linear-gradient(0deg, #fff, transparent);
+    }
+
+    .btn:hover .btn-svg {
+      fill: #fff;
+      filter:
+        drop-shadow(0 0 3px hsl(var(--highlight-color-hue), 100%, 70%)) drop-shadow(0 -4px 6px #0009);
+      animation: none;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+
+
+
+&lt;!-- Button --&gt;
+&lt;body&gt;&lt;div class=&quot;btn-wrapper&quot;&gt;
+  &lt;button class=&quot;btn px-3 py-2 md:px-4 md:py-2 focus:outline-none&quot; type=&quot;button&quot; aria-label=&quot;Generate&quot; title=&quot;Generate&quot;&gt;
+        &lt;svg class=&quot;btn-svg&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 24 24&quot; width=&quot;24&quot; height=&quot;24&quot; aria-hidden=&quot;true&quot;&gt;
+          &lt;path stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; d=&quot;M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z&quot;&gt;
+          &lt;/path&gt;
+        &lt;/svg&gt;
+
+        &lt;div class=&quot;txt-wrapper&quot;&gt;
+          &lt;div class=&quot;txt-1&quot;&gt;
+            &lt;span class=&quot;btn-letter&quot;&gt;G&lt;/span&gt;
+            &lt;span class=&quot;btn-letter&quot;&gt;e&lt;/span&gt;
+            &lt;span class=&quot;btn-letter&quot;&gt;n&lt;/span&gt;
+            &lt;span class=&quot;btn-letter&quot;&gt;e&lt;/span&gt;
+            &lt;span class=&quot;btn-letter&quot;&gt;r&lt;/span&gt;
+            &lt;span class=&quot;btn-letter&quot;&gt;a&lt;/span&gt;
+            &lt;span class=&quot;btn-letter&quot;&gt;t&lt;/span&gt;
+            &lt;span class=&quot;btn-letter&quot;&gt;e&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;txt-2&quot;&gt;
+            &lt;span class=&quot;btn-letter&quot;&gt;G&lt;/span&gt;
+            &lt;span class=&quot;btn-letter&quot;&gt;e&lt;/span&gt;
+            &lt;span class=&quot;btn-letter&quot;&gt;n&lt;/span&gt;
+            &lt;span class=&quot;btn-letter&quot;&gt;e&lt;/span&gt;
+            &lt;span class=&quot;btn-letter&quot;&gt;r&lt;/span&gt;
+            &lt;span class=&quot;btn-letter&quot;&gt;a&lt;/span&gt;
+            &lt;span class=&quot;btn-letter&quot;&gt;t&lt;/span&gt;
+            &lt;span class=&quot;btn-letter&quot;&gt;i&lt;/span&gt;
+            &lt;span class=&quot;btn-letter&quot;&gt;n&lt;/span&gt;
+            &lt;span class=&quot;btn-letter&quot;&gt;g&lt;/span&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/button&gt;
+&lt;/div&gt;
+
+
+
+
+
+&lt;/body&gt;&lt;/html&gt;
+                                &lt;/div&gt;
+                                
+    &lt;script&gt;
+      (function() {
+        function checkAndCenter() {
+          // Use double requestAnimationFrame to ensure DOM is fully painted and layout is stable
+          requestAnimationFrame(function() {
+            requestAnimationFrame(function() {
+              const wrapper = document.querySelector('.component-wrapper');
+              if (!wrapper) return;
+              
+              // Get all child elements
+              const children = Array.from(wrapper.children);
+              if (children.length === 0) return;
+              
+              // Temporarily override wrapper styles to shrink-wrap for measurement
+              // Set inline styles to shrink-wrap (inline styles override CSS)
+              wrapper.style.display = 'inline-block';
+              wrapper.style.width = 'auto';
+              wrapper.style.height = 'auto';
+              wrapper.style.overflow = 'visible';
+              wrapper.style.boxSizing = 'content-box';
+              
+              // Force multiple reflows to ensure styles are fully applied
+              void wrapper.offsetHeight;
+              void wrapper.offsetWidth;
+              void wrapper.offsetHeight;
+              
+              // Measure the wrapper's content size
+              const contentWidth = wrapper.offsetWidth;
+              const contentHeight = wrapper.offsetHeight;
+              
+              // Restore original styles by removing inline styles we added
+              wrapper.style.removeProperty('display');
+              wrapper.style.removeProperty('width');
+              wrapper.style.removeProperty('height');
+              wrapper.style.removeProperty('overflow');
+              wrapper.style.removeProperty('box-sizing');
+              
+              // If content is less than 500x500, center it
+              if (contentWidth &gt; 0 &amp;&amp; contentHeight &gt; 0 &amp;&amp; contentWidth &lt; 500 &amp;&amp; contentHeight &lt; 500) {
+                wrapper.style.display = 'flex';
+                wrapper.style.alignItems = 'center';
+                wrapper.style.justifyContent = 'center';
+              }
+            });
+          });
+        }
+        
+        // Check immediately and after delays to ensure content is rendered and styled
+        function runChecks() {
+          checkAndCenter();
+          setTimeout(checkAndCenter, 50);
+          setTimeout(checkAndCenter, 150);
+          setTimeout(checkAndCenter, 300);
+          setTimeout(checkAndCenter, 500);
+          setTimeout(checkAndCenter, 1000);
+        }
+        
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', runChecks);
+        } else {
+          runChecks();
+        }
+        
+        // Also check when images or other resources load
+        window.addEventListener('load', () =&gt; {
+          setTimeout(checkAndCenter, 100);
+          setTimeout(checkAndCenter, 300);
+        });
+        
+        // Use ResizeObserver to detect size changes
+        if (window.ResizeObserver) {
+          setTimeout(() =&gt; {
+            const wrapper = document.querySelector('.component-wrapper');
+            if (wrapper) {
+              const observer = new ResizeObserver(() =&gt; {
+                setTimeout(checkAndCenter, 50);
+              });
+              observer.observe(wrapper);
+            }
+          }, 500);
+        }
+      })();
+    &lt;/script&gt;
+  
+                              &lt;/body&gt;
+                              &lt;/html&gt;
+                            "></iframe></div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-10">
+                                        <div class="lg:col-span-2">
+                                            <section class="">
+                                                <h2
+                                                    class="text-xl sm:text-2xl font-medium text-gray-900 dark:text-neutral-100 transition-colors duration-300 mb-6">
+                                                    About</h2>
+                                                <div
+                                                    class="bg-white dark:bg-neutral-900/30 border border-gray-200 dark:border-neutral-800 rounded-lg p-6 transition-colors duration-300">
+                                                    <p
+                                                        class="text-gray-600 dark:text-neutral-400 leading-relaxed transition-colors duration-300">
+                                                        Interactive call-to-action button styled with Tailwind. Displays
+                                                        star icon and letter-by-letter text swap between “Generate” and
+                                                        “Generating”, ideal for content creation triggers or async
+                                                        actions.</p>
+                                                    <div
+                                                        class="mt-4 rounded-lg border border-amber-200 dark:border-amber-400/40 bg-amber-50/80 dark:bg-amber-400/10 px-4 py-3 text-sm text-amber-800 dark:text-amber-200">
+                                                        This is a Pro component. Upgrade to unlock the source code and
+                                                        remix tools.</div>
+                                                    <div
+                                                        class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6 pt-6 border-t border-gray-100 dark:border-neutral-800 transition-colors duration-300">
+                                                        <div class="flex items-center gap-3">
+                                                            <div
+                                                                class="h-10 w-10 flex items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-800 text-gray-500 dark:text-neutral-400 transition-colors duration-300">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                    height="24" viewBox="0 0 24 24" fill="none"
+                                                                    stroke="currentColor" stroke-width="2"
+                                                                    stroke-linecap="round" stroke-linejoin="round"
+                                                                    class="lucide lucide-calendar w-4 h-4">
+                                                                    <path d="M8 2v4"></path>
+                                                                    <path d="M16 2v4"></path>
+                                                                    <rect width="18" height="18" x="3" y="4" rx="2">
+                                                                    </rect>
+                                                                    <path d="M3 10h18"></path>
+                                                                </svg></div>
+                                                            <div>
+                                                                <p
+                                                                    class="text-xs text-gray-500 dark:text-neutral-500 transition-colors duration-300">
+                                                                    Created</p>
+                                                                <p
+                                                                    class="text-sm font-medium text-gray-900 dark:text-white transition-colors duration-300">
+                                                                    9 أكتوبر</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex items-center gap-3">
+                                                            <div
+                                                                class="h-10 w-10 flex items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-800 text-gray-500 dark:text-neutral-400 transition-colors duration-300">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                    height="24" viewBox="0 0 24 24" fill="none"
+                                                                    stroke="currentColor" stroke-width="2"
+                                                                    stroke-linecap="round" stroke-linejoin="round"
+                                                                    class="lucide lucide-clock w-4 h-4">
+                                                                    <circle cx="12" cy="12" r="10"></circle>
+                                                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                                                </svg></div>
+                                                            <div>
+                                                                <p
+                                                                    class="text-xs text-gray-500 dark:text-neutral-500 transition-colors duration-300">
+                                                                    Updated</p>
+                                                                <p
+                                                                    class="text-sm font-medium text-gray-900 dark:text-white transition-colors duration-300">
+                                                                    17 يونيو</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex items-center gap-3">
+                                                            <div
+                                                                class="h-10 w-10 flex items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-800 text-gray-500 dark:text-neutral-400 transition-colors duration-300">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                    height="24" viewBox="0 0 24 24" fill="none"
+                                                                    stroke="currentColor" stroke-width="2"
+                                                                    stroke-linecap="round" stroke-linejoin="round"
+                                                                    class="lucide lucide-box w-4 h-4">
+                                                                    <path
+                                                                        d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z">
+                                                                    </path>
+                                                                    <path d="m3.3 7 8.7 5 8.7-5"></path>
+                                                                    <path d="M12 22V12"></path>
+                                                                </svg></div>
+                                                            <div>
+                                                                <p
+                                                                    class="text-xs text-gray-500 dark:text-neutral-500 transition-colors duration-300">
+                                                                    Remixes</p>
+                                                                <p
+                                                                    class="text-sm font-medium text-gray-900 dark:text-white transition-colors duration-300">
+                                                                    333</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </section>
+                                        </div>
+                                        <div class="lg:col-span-1 space-y-8">
+                                            <section class="">
+                                                <h2
+                                                    class="text-xl sm:text-2xl font-medium text-gray-900 dark:text-neutral-100 transition-colors duration-300 mb-6">
+                                                    Creator</h2>
+                                                <div
+                                                    class="bg-white dark:bg-neutral-900/30 border border-gray-200 dark:border-neutral-800 rounded-lg p-6 transition-colors duration-300">
+                                                    <div class="flex items-center gap-3"><img
+                                                            src="https://lh3.googleusercontent.com/a/ACg8ocLoQZePAiZWIthvCKEU9ojH9gXKvKMsh4bHnXIlpUcwrvUFJO9F=s96-c"
+                                                            alt="Sourany Phomhome"
+                                                            class="w-4 h-4 text-[8px] rounded-full object-cover w-8 h-8 text-[10px]">
+                                                        <div class="flex-1 min-w-0">
+                                                            <p
+                                                                class="text-sm font-medium text-gray-900 dark:text-white truncate">
+                                                                Sourany Phomhome</p><a
+                                                                class="text-xs text-blue-600 dark:text-blue-400 hover:underline"
+                                                                href="/user/sourany">View profile</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </section>
+                                            <section class="">
+                                                <h2
+                                                    class="text-xl sm:text-2xl font-medium text-gray-900 dark:text-neutral-100 transition-colors duration-300 mb-6">
+                                                    Tags</h2>
+                                                <div
+                                                    class="bg-white dark:bg-neutral-900/30 border border-gray-200 dark:border-neutral-800 rounded-lg p-6 transition-colors duration-300">
+                                                    <div class="flex flex-wrap gap-2"><a
+                                                            class="px-2.5 py-1 rounded-full bg-gray-100 dark:bg-neutral-800 text-xs font-medium text-gray-700 dark:text-neutral-300 hover:bg-gray-200 dark:hover:bg-neutral-700 transition-colors duration-300"
+                                                            href="/components?q=button">button</a><a
+                                                            class="px-2.5 py-1 rounded-full bg-gray-100 dark:bg-neutral-800 text-xs font-medium text-gray-700 dark:text-neutral-300 hover:bg-gray-200 dark:hover:bg-neutral-700 transition-colors duration-300"
+                                                            href="/components?q=tailwind">tailwind</a><a
+                                                            class="px-2.5 py-1 rounded-full bg-gray-100 dark:bg-neutral-800 text-xs font-medium text-gray-700 dark:text-neutral-300 hover:bg-gray-200 dark:hover:bg-neutral-700 transition-colors duration-300"
+                                                            href="/components?q=animated">animated</a><a
+                                                            class="px-2.5 py-1 rounded-full bg-gray-100 dark:bg-neutral-800 text-xs font-medium text-gray-700 dark:text-neutral-300 hover:bg-gray-200 dark:hover:bg-neutral-700 transition-colors duration-300"
+                                                            href="/components?q=icon">icon</a><a
+                                                            class="px-2.5 py-1 rounded-full bg-gray-100 dark:bg-neutral-800 text-xs font-medium text-gray-700 dark:text-neutral-300 hover:bg-gray-200 dark:hover:bg-neutral-700 transition-colors duration-300"
+                                                            href="/components?q=interactive">interactive</a><a
+                                                            class="px-2.5 py-1 rounded-full bg-gray-100 dark:bg-neutral-800 text-xs font-medium text-gray-700 dark:text-neutral-300 hover:bg-gray-200 dark:hover:bg-neutral-700 transition-colors duration-300"
+                                                            href="/components?q=responsive">responsive</a><a
+                                                            class="px-2.5 py-1 rounded-full bg-gray-100 dark:bg-neutral-800 text-xs font-medium text-gray-700 dark:text-neutral-300 hover:bg-gray-200 dark:hover:bg-neutral-700 transition-colors duration-300"
+                                                            href="/components?q=cta">cta</a></div>
+                                                </div>
+                                            </section>
+                                        </div>
+                                    </div>
+                                    <section class="mb-10">
+                                        <h2
+                                            class="text-xl sm:text-2xl font-medium text-gray-900 dark:text-neutral-100 transition-colors duration-300 mb-6">
+                                            More from Sourany Phomhome</h2>
+                                        <div
+                                            class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-2 gap-y-4 sm:gap-3 md:gap-4">
+                                            <div
+                                                class="w-full rounded-xl overflow-hidden border border-black/5 dark:border-white/10 bg-white/20 dark:bg-black/20 group flex flex-col transition-all cursor-pointer hover:border-black/10 dark:hover:border-white/20">
+                                                <div class="relative overflow-hidden cursor-pointer rounded-t-xl w-full"
+                                                    style="padding-top: 75%;"><img
+                                                        src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/components/1763406026577-zowz58d8m1.jpeg"
+                                                        alt="Animated Pill Button with Hover Letter Reveal"
+                                                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-300">
+                                                </div>
+                                                <div class="p-3 bg-white/50 dark:bg-black/50 backdrop-blur-sm mt-auto">
+                                                    <div class="flex items-center justify-between mb-1.5">
+                                                        <h3 class="font-medium text-xs text-neutral-900 dark:text-neutral-100 truncate flex-1 mr-2"
+                                                            title="Animated Pill Button with Hover Letter Reveal">
+                                                            Animated Pill Button with Hover Letter Reveal</h3>
+                                                    </div>
+                                                    <div class="flex items-center justify-between">
+                                                        <div class="flex items-center gap-1.5"><button
+                                                                class="hover:opacity-80 transition-opacity">
+                                                                <div class="flex items-center gap-1.5 "><img
+                                                                        src="https://lh3.googleusercontent.com/a/ACg8ocLoQZePAiZWIthvCKEU9ojH9gXKvKMsh4bHnXIlpUcwrvUFJO9F=s96-c"
+                                                                        alt="Sourany Phomhome"
+                                                                        class="w-3 h-3 text-[6px] rounded-full object-cover "><span
+                                                                        class="text-neutral-700 dark:text-neutral-300 truncate text-xs">Sourany
+                                                                        Phomhome</span></div>
+                                                            </button></div>
+                                                        <div
+                                                            class="flex items-center gap-1 text-[9px] text-neutral-400 dark:text-neutral-600">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                height="24" viewBox="0 0 24 24" fill="none"
+                                                                stroke="currentColor" stroke-width="2"
+                                                                stroke-linecap="round" stroke-linejoin="round"
+                                                                class="lucide lucide-eye h-2.5 w-2.5">
+                                                                <path
+                                                                    d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0">
+                                                                </path>
+                                                                <circle cx="12" cy="12" r="3"></circle>
+                                                            </svg><span>700</span></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="w-full rounded-xl overflow-hidden border border-black/5 dark:border-white/10 bg-white/20 dark:bg-black/20 group flex flex-col transition-all cursor-pointer hover:border-black/10 dark:hover:border-white/20">
+                                                <div class="relative overflow-hidden cursor-pointer rounded-t-xl w-full"
+                                                    style="padding-top: 75%;"><img
+                                                        src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/components/1758295438421-xquq037omco.png"
+                                                        alt="Animated Crypto Data Feature Card with Gradient Connectors"
+                                                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-300">
+                                                </div>
+                                                <div class="p-3 bg-white/50 dark:bg-black/50 backdrop-blur-sm mt-auto">
+                                                    <div class="flex items-center justify-between mb-1.5">
+                                                        <h3 class="font-medium text-xs text-neutral-900 dark:text-neutral-100 truncate flex-1 mr-2"
+                                                            title="Animated Crypto Data Feature Card with Gradient Connectors">
+                                                            Animated Crypto Data Feature Card with Gradient Connectors
+                                                        </h3>
+                                                    </div>
+                                                    <div class="flex items-center justify-between">
+                                                        <div class="flex items-center gap-1.5"><button
+                                                                class="hover:opacity-80 transition-opacity">
+                                                                <div class="flex items-center gap-1.5 "><img
+                                                                        src="https://lh3.googleusercontent.com/a/ACg8ocLoQZePAiZWIthvCKEU9ojH9gXKvKMsh4bHnXIlpUcwrvUFJO9F=s96-c"
+                                                                        alt="Sourany Phomhome"
+                                                                        class="w-3 h-3 text-[6px] rounded-full object-cover "><span
+                                                                        class="text-neutral-700 dark:text-neutral-300 truncate text-xs">Sourany
+                                                                        Phomhome</span></div>
+                                                            </button></div>
+                                                        <div
+                                                            class="flex items-center gap-1 text-[9px] text-neutral-400 dark:text-neutral-600">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                height="24" viewBox="0 0 24 24" fill="none"
+                                                                stroke="currentColor" stroke-width="2"
+                                                                stroke-linecap="round" stroke-linejoin="round"
+                                                                class="lucide lucide-eye h-2.5 w-2.5">
+                                                                <path
+                                                                    d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0">
+                                                                </path>
+                                                                <circle cx="12" cy="12" r="3"></circle>
+                                                            </svg><span>272</span></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="w-full rounded-xl overflow-hidden border border-black/5 dark:border-white/10 bg-white/20 dark:bg-black/20 group flex flex-col transition-all cursor-pointer hover:border-black/10 dark:hover:border-white/20">
+                                                <div class="relative overflow-hidden cursor-pointer rounded-t-xl w-full"
+                                                    style="padding-top: 75%;"><img
+                                                        src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/components/1763072564040-162iv5thk4g.png"
+                                                        alt="Interactive Portfolio About Section with 3D Book"
+                                                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-300">
+                                                </div>
+                                                <div class="p-3 bg-white/50 dark:bg-black/50 backdrop-blur-sm mt-auto">
+                                                    <div class="flex items-center justify-between mb-1.5">
+                                                        <h3 class="font-medium text-xs text-neutral-900 dark:text-neutral-100 truncate flex-1 mr-2"
+                                                            title="Interactive Portfolio About Section with 3D Book">
+                                                            Interactive Portfolio About Section with 3D Book</h3><span
+                                                            class="text-[10px] text-black/50 dark:text-white/50 bg-black/5 dark:bg-white/5 px-1.5 py-0.5 rounded-md font-normal flex-shrink-0">PRO</span>
+                                                    </div>
+                                                    <div class="flex items-center justify-between">
+                                                        <div class="flex items-center gap-1.5"><button
+                                                                class="hover:opacity-80 transition-opacity">
+                                                                <div class="flex items-center gap-1.5 "><img
+                                                                        src="https://lh3.googleusercontent.com/a/ACg8ocLoQZePAiZWIthvCKEU9ojH9gXKvKMsh4bHnXIlpUcwrvUFJO9F=s96-c"
+                                                                        alt="Sourany Phomhome"
+                                                                        class="w-3 h-3 text-[6px] rounded-full object-cover "><span
+                                                                        class="text-neutral-700 dark:text-neutral-300 truncate text-xs">Sourany
+                                                                        Phomhome</span></div>
+                                                            </button></div>
+                                                        <div
+                                                            class="flex items-center gap-1 text-[9px] text-neutral-400 dark:text-neutral-600">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                height="24" viewBox="0 0 24 24" fill="none"
+                                                                stroke="currentColor" stroke-width="2"
+                                                                stroke-linecap="round" stroke-linejoin="round"
+                                                                class="lucide lucide-eye h-2.5 w-2.5">
+                                                                <path
+                                                                    d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0">
+                                                                </path>
+                                                                <circle cx="12" cy="12" r="3"></circle>
+                                                            </svg><span>805</span></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="w-full rounded-xl overflow-hidden border border-black/5 dark:border-white/10 bg-white/20 dark:bg-black/20 group flex flex-col transition-all cursor-pointer hover:border-black/10 dark:hover:border-white/20">
+                                                <div class="relative overflow-hidden cursor-pointer rounded-t-xl w-full"
+                                                    style="padding-top: 75%;"><img
+                                                        src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/components/1764346041675-velaixnp3qo.png"
+                                                        alt="Animated Brand Footer with Navigation Links"
+                                                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-300">
+                                                </div>
+                                                <div class="p-3 bg-white/50 dark:bg-black/50 backdrop-blur-sm mt-auto">
+                                                    <div class="flex items-center justify-between mb-1.5">
+                                                        <h3 class="font-medium text-xs text-neutral-900 dark:text-neutral-100 truncate flex-1 mr-2"
+                                                            title="Animated Brand Footer with Navigation Links">Animated
+                                                            Brand Footer with Navigation Links</h3>
+                                                    </div>
+                                                    <div class="flex items-center justify-between">
+                                                        <div class="flex items-center gap-1.5"><button
+                                                                class="hover:opacity-80 transition-opacity">
+                                                                <div class="flex items-center gap-1.5 "><img
+                                                                        src="https://lh3.googleusercontent.com/a/ACg8ocLoQZePAiZWIthvCKEU9ojH9gXKvKMsh4bHnXIlpUcwrvUFJO9F=s96-c"
+                                                                        alt="Sourany Phomhome"
+                                                                        class="w-3 h-3 text-[6px] rounded-full object-cover "><span
+                                                                        class="text-neutral-700 dark:text-neutral-300 truncate text-xs">Sourany
+                                                                        Phomhome</span></div>
+                                                            </button></div>
+                                                        <div
+                                                            class="flex items-center gap-1 text-[9px] text-neutral-400 dark:text-neutral-600">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                height="24" viewBox="0 0 24 24" fill="none"
+                                                                stroke="currentColor" stroke-width="2"
+                                                                stroke-linecap="round" stroke-linejoin="round"
+                                                                class="lucide lucide-eye h-2.5 w-2.5">
+                                                                <path
+                                                                    d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0">
+                                                                </path>
+                                                                <circle cx="12" cy="12" r="3"></circle>
+                                                            </svg><span>515</span></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="w-full rounded-xl overflow-hidden border border-black/5 dark:border-white/10 bg-white/20 dark:bg-black/20 group flex flex-col transition-all cursor-pointer hover:border-black/10 dark:hover:border-white/20">
+                                                <div class="relative overflow-hidden cursor-pointer rounded-t-xl w-full"
+                                                    style="padding-top: 75%;"><img
+                                                        src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/components/1757367602502-l8zs5oomu0r.jpeg"
+                                                        alt="UnicornStudio Project Embed Container Gray Wave with Sparkles"
+                                                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-300">
+                                                </div>
+                                                <div class="p-3 bg-white/50 dark:bg-black/50 backdrop-blur-sm mt-auto">
+                                                    <div class="flex items-center justify-between mb-1.5">
+                                                        <h3 class="font-medium text-xs text-neutral-900 dark:text-neutral-100 truncate flex-1 mr-2"
+                                                            title="UnicornStudio Project Embed Container Gray Wave with Sparkles">
+                                                            UnicornStudio Project Embed Container Gray Wave with
+                                                            Sparkles</h3>
+                                                    </div>
+                                                    <div class="flex items-center justify-between">
+                                                        <div class="flex items-center gap-1.5"><button
+                                                                class="hover:opacity-80 transition-opacity">
+                                                                <div class="flex items-center gap-1.5 "><img
+                                                                        src="https://lh3.googleusercontent.com/a/ACg8ocLoQZePAiZWIthvCKEU9ojH9gXKvKMsh4bHnXIlpUcwrvUFJO9F=s96-c"
+                                                                        alt="Sourany Phomhome"
+                                                                        class="w-3 h-3 text-[6px] rounded-full object-cover "><span
+                                                                        class="text-neutral-700 dark:text-neutral-300 truncate text-xs">Sourany
+                                                                        Phomhome</span></div>
+                                                            </button></div>
+                                                        <div
+                                                            class="flex items-center gap-1 text-[9px] text-neutral-400 dark:text-neutral-600">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                height="24" viewBox="0 0 24 24" fill="none"
+                                                                stroke="currentColor" stroke-width="2"
+                                                                stroke-linecap="round" stroke-linejoin="round"
+                                                                class="lucide lucide-eye h-2.5 w-2.5">
+                                                                <path
+                                                                    d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0">
+                                                                </path>
+                                                                <circle cx="12" cy="12" r="3"></circle>
+                                                            </svg><span>834</span></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4 flex justify-end"><a
+                                                class="inline-flex items-center text-gray-600 dark:text-neutral-400 hover:text-gray-800 dark:hover:text-neutral-300 font-medium transition-colors duration-300"
+                                                href="/user/sourany/components"><span>View all from Sourany
+                                                    Phomhome</span><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                    height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="lucide lucide-arrow-right ml-2 w-4 h-4">
+                                                    <path d="M5 12h14"></path>
+                                                    <path d="m12 5 7 7-7 7"></path>
+                                                </svg></a></div>
+                                    </section>
+                                    <section class="mb-10">
+                                        <h2
+                                            class="text-xl sm:text-2xl font-medium text-gray-900 dark:text-neutral-100 transition-colors duration-300 mb-6">
+                                            Related Components</h2>
+                                        <div
+                                            class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-2 gap-y-4 sm:gap-3 md:gap-4">
+                                            <div
+                                                class="w-full rounded-xl overflow-hidden border border-black/5 dark:border-white/10 bg-white/20 dark:bg-black/20 group flex flex-col transition-all cursor-pointer hover:border-black/10 dark:hover:border-white/20">
+                                                <div class="relative overflow-hidden cursor-pointer rounded-t-xl w-full"
+                                                    style="padding-top: 75%;"><img
+                                                        src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/components/1763740568379-1lekq6v7h44.jpeg"
+                                                        alt="Spinning Border Glow CTA Button"
+                                                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-300">
+                                                </div>
+                                                <div class="p-3 bg-white/50 dark:bg-black/50 backdrop-blur-sm mt-auto">
+                                                    <div class="flex items-center justify-between mb-1.5">
+                                                        <h3 class="font-medium text-xs text-neutral-900 dark:text-neutral-100 truncate flex-1 mr-2"
+                                                            title="Spinning Border Glow CTA Button">Spinning Border Glow
+                                                            CTA Button</h3><span
+                                                            class="text-[10px] text-black/50 dark:text-white/50 bg-black/5 dark:bg-white/5 px-1.5 py-0.5 rounded-md font-normal flex-shrink-0">PRO</span>
+                                                    </div>
+                                                    <div class="flex items-center justify-between">
+                                                        <div class="flex items-center gap-1.5"><button
+                                                                class="hover:opacity-80 transition-opacity">
+                                                                <div class="flex items-center gap-1.5 "><img
+                                                                        src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/user-avatars/avatars/9109ecbb-cdc4-4815-981e-2ea83be13765-1747961036177.png"
+                                                                        alt="Meng To"
+                                                                        class="w-3 h-3 text-[6px] rounded-full object-cover "><span
+                                                                        class="text-neutral-700 dark:text-neutral-300 truncate text-xs">Meng
+                                                                        To</span></div>
+                                                            </button></div>
+                                                        <div
+                                                            class="flex items-center gap-1 text-[9px] text-neutral-400 dark:text-neutral-600">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                height="24" viewBox="0 0 24 24" fill="none"
+                                                                stroke="currentColor" stroke-width="2"
+                                                                stroke-linecap="round" stroke-linejoin="round"
+                                                                class="lucide lucide-eye h-2.5 w-2.5">
+                                                                <path
+                                                                    d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0">
+                                                                </path>
+                                                                <circle cx="12" cy="12" r="3"></circle>
+                                                            </svg><span>4467</span></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="w-full rounded-xl overflow-hidden border border-black/5 dark:border-white/10 bg-white/20 dark:bg-black/20 group flex flex-col transition-all cursor-pointer hover:border-black/10 dark:hover:border-white/20">
+                                                <div class="relative overflow-hidden cursor-pointer rounded-t-xl w-full"
+                                                    style="padding-top: 75%;"><img
+                                                        src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/components/1763908308717-vmoja04b2c9.jpeg"
+                                                        alt="Gradient CTA Button with Icon"
+                                                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-300">
+                                                </div>
+                                                <div class="p-3 bg-white/50 dark:bg-black/50 backdrop-blur-sm mt-auto">
+                                                    <div class="flex items-center justify-between mb-1.5">
+                                                        <h3 class="font-medium text-xs text-neutral-900 dark:text-neutral-100 truncate flex-1 mr-2"
+                                                            title="Gradient CTA Button with Icon">Gradient CTA Button
+                                                            with Icon</h3><span
+                                                            class="text-[10px] text-black/50 dark:text-white/50 bg-black/5 dark:bg-white/5 px-1.5 py-0.5 rounded-md font-normal flex-shrink-0">PRO</span>
+                                                    </div>
+                                                    <div class="flex items-center justify-between">
+                                                        <div class="flex items-center gap-1.5"><button
+                                                                class="hover:opacity-80 transition-opacity">
+                                                                <div class="flex items-center gap-1.5 "><img
+                                                                        src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/user-avatars/avatars/9109ecbb-cdc4-4815-981e-2ea83be13765-1747961036177.png"
+                                                                        alt="Meng To"
+                                                                        class="w-3 h-3 text-[6px] rounded-full object-cover "><span
+                                                                        class="text-neutral-700 dark:text-neutral-300 truncate text-xs">Meng
+                                                                        To</span></div>
+                                                            </button></div>
+                                                        <div
+                                                            class="flex items-center gap-1 text-[9px] text-neutral-400 dark:text-neutral-600">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                height="24" viewBox="0 0 24 24" fill="none"
+                                                                stroke="currentColor" stroke-width="2"
+                                                                stroke-linecap="round" stroke-linejoin="round"
+                                                                class="lucide lucide-eye h-2.5 w-2.5">
+                                                                <path
+                                                                    d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0">
+                                                                </path>
+                                                                <circle cx="12" cy="12" r="3"></circle>
+                                                            </svg><span>4281</span></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="w-full rounded-xl overflow-hidden border border-black/5 dark:border-white/10 bg-white/20 dark:bg-black/20 group flex flex-col transition-all cursor-pointer hover:border-black/10 dark:hover:border-white/20">
+                                                <div class="relative overflow-hidden cursor-pointer rounded-t-xl w-full"
+                                                    style="padding-top: 75%;"><img
+                                                        src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/components/1762766183861-bvi7uqtlu54.jpeg"
+                                                        alt="Animated Gradient &quot;Start Free&quot; CTA Button"
+                                                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-300">
+                                                </div>
+                                                <div class="p-3 bg-white/50 dark:bg-black/50 backdrop-blur-sm mt-auto">
+                                                    <div class="flex items-center justify-between mb-1.5">
+                                                        <h3 class="font-medium text-xs text-neutral-900 dark:text-neutral-100 truncate flex-1 mr-2"
+                                                            title="Animated Gradient &quot;Start Free&quot; CTA Button">
+                                                            Animated Gradient "Start Free" CTA Button</h3>
+                                                    </div>
+                                                    <div class="flex items-center justify-between">
+                                                        <div class="flex items-center gap-1.5"><button
+                                                                class="hover:opacity-80 transition-opacity">
+                                                                <div class="flex items-center gap-1.5 "><img
+                                                                        src="https://lh3.googleusercontent.com/a/ACg8ocLoQZePAiZWIthvCKEU9ojH9gXKvKMsh4bHnXIlpUcwrvUFJO9F=s96-c"
+                                                                        alt="Sourany Phomhome"
+                                                                        class="w-3 h-3 text-[6px] rounded-full object-cover "><span
+                                                                        class="text-neutral-700 dark:text-neutral-300 truncate text-xs">Sourany
+                                                                        Phomhome</span></div>
+                                                            </button></div>
+                                                        <div
+                                                            class="flex items-center gap-1 text-[9px] text-neutral-400 dark:text-neutral-600">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                height="24" viewBox="0 0 24 24" fill="none"
+                                                                stroke="currentColor" stroke-width="2"
+                                                                stroke-linecap="round" stroke-linejoin="round"
+                                                                class="lucide lucide-eye h-2.5 w-2.5">
+                                                                <path
+                                                                    d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0">
+                                                                </path>
+                                                                <circle cx="12" cy="12" r="3"></circle>
+                                                            </svg><span>3166</span></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="w-full rounded-xl overflow-hidden border border-black/5 dark:border-white/10 bg-white/20 dark:bg-black/20 group flex flex-col transition-all cursor-pointer hover:border-black/10 dark:hover:border-white/20">
+                                                <div class="relative overflow-hidden cursor-pointer rounded-t-xl w-full"
+                                                    style="padding-top: 75%;"><img
+                                                        src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/components/1763959198355-oodd6lawnip.jpeg"
+                                                        alt="Gradient Launch Button with Icon"
+                                                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-300">
+                                                </div>
+                                                <div class="p-3 bg-white/50 dark:bg-black/50 backdrop-blur-sm mt-auto">
+                                                    <div class="flex items-center justify-between mb-1.5">
+                                                        <h3 class="font-medium text-xs text-neutral-900 dark:text-neutral-100 truncate flex-1 mr-2"
+                                                            title="Gradient Launch Button with Icon">Gradient Launch
+                                                            Button with Icon</h3><span
+                                                            class="text-[10px] text-black/50 dark:text-white/50 bg-black/5 dark:bg-white/5 px-1.5 py-0.5 rounded-md font-normal flex-shrink-0">PRO</span>
+                                                    </div>
+                                                    <div class="flex items-center justify-between">
+                                                        <div class="flex items-center gap-1.5"><button
+                                                                class="hover:opacity-80 transition-opacity">
+                                                                <div class="flex items-center gap-1.5 "><img
+                                                                        src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/user-avatars/avatars/9109ecbb-cdc4-4815-981e-2ea83be13765-1747961036177.png"
+                                                                        alt="Meng To"
+                                                                        class="w-3 h-3 text-[6px] rounded-full object-cover "><span
+                                                                        class="text-neutral-700 dark:text-neutral-300 truncate text-xs">Meng
+                                                                        To</span></div>
+                                                            </button></div>
+                                                        <div
+                                                            class="flex items-center gap-1 text-[9px] text-neutral-400 dark:text-neutral-600">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                height="24" viewBox="0 0 24 24" fill="none"
+                                                                stroke="currentColor" stroke-width="2"
+                                                                stroke-linecap="round" stroke-linejoin="round"
+                                                                class="lucide lucide-eye h-2.5 w-2.5">
+                                                                <path
+                                                                    d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0">
+                                                                </path>
+                                                                <circle cx="12" cy="12" r="3"></circle>
+                                                            </svg><span>3383</span></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="w-full rounded-xl overflow-hidden border border-black/5 dark:border-white/10 bg-white/20 dark:bg-black/20 group flex flex-col transition-all cursor-pointer hover:border-black/10 dark:hover:border-white/20">
+                                                <div class="relative overflow-hidden cursor-pointer rounded-t-xl w-full"
+                                                    style="padding-top: 75%;"><img
+                                                        src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/components/1763910166256-ilotk139khn.jpeg"
+                                                        alt="Gradient Button with Icon"
+                                                        class="absolute inset-0 w-full h-full object-cover transition-transform duration-300">
+                                                </div>
+                                                <div class="p-3 bg-white/50 dark:bg-black/50 backdrop-blur-sm mt-auto">
+                                                    <div class="flex items-center justify-between mb-1.5">
+                                                        <h3 class="font-medium text-xs text-neutral-900 dark:text-neutral-100 truncate flex-1 mr-2"
+                                                            title="Gradient Button with Icon">Gradient Button with Icon
+                                                        </h3><span
+                                                            class="text-[10px] text-black/50 dark:text-white/50 bg-black/5 dark:bg-white/5 px-1.5 py-0.5 rounded-md font-normal flex-shrink-0">PRO</span>
+                                                    </div>
+                                                    <div class="flex items-center justify-between">
+                                                        <div class="flex items-center gap-1.5"><button
+                                                                class="hover:opacity-80 transition-opacity">
+                                                                <div class="flex items-center gap-1.5 "><img
+                                                                        src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/user-avatars/avatars/9109ecbb-cdc4-4815-981e-2ea83be13765-1747961036177.png"
+                                                                        alt="Meng To"
+                                                                        class="w-3 h-3 text-[6px] rounded-full object-cover "><span
+                                                                        class="text-neutral-700 dark:text-neutral-300 truncate text-xs">Meng
+                                                                        To</span></div>
+                                                            </button></div>
+                                                        <div
+                                                            class="flex items-center gap-1 text-[9px] text-neutral-400 dark:text-neutral-600">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                height="24" viewBox="0 0 24 24" fill="none"
+                                                                stroke="currentColor" stroke-width="2"
+                                                                stroke-linecap="round" stroke-linejoin="round"
+                                                                class="lucide lucide-eye h-2.5 w-2.5">
+                                                                <path
+                                                                    d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0">
+                                                                </path>
+                                                                <circle cx="12" cy="12" r="3"></circle>
+                                                            </svg><span>3712</span></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4 flex justify-end"><a
+                                                class="inline-flex items-center text-gray-600 dark:text-neutral-400 hover:text-gray-800 dark:hover:text-neutral-300 font-medium transition-colors duration-300"
+                                                href="/components?q=button"><span>Browse all button
+                                                    components</span><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                    height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="lucide lucide-arrow-right ml-2 w-4 h-4">
+                                                    <path d="M5 12h14"></path>
+                                                    <path d="m12 5 7 7-7 7"></path>
+                                                </svg></a></div>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer
+            class="bg-neutral-50 dark:bg-neutral-950/50 border border-neutral-100 dark:border-neutral-800 py-12 md:py-16 m-4 rounded-2xl relative">
+            <button
+                class="absolute top-8 right-8 text-muted-foreground hover:text-foreground transition-colors bg-neutral-100 dark:bg-neutral-900 rounded-xl p-2 border border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700"
+                aria-label="Scroll to top"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" class="lucide lucide-chevron-up h-4 w-4">
+                    <path d="m18 15-6-6-6 6"></path>
+                </svg></button>
+            <div class="container px-6 md:px-12">
+                <div
+                    class="flex flex-col md:flex-row justify-between items-center md:items-start mb-8 md:mb-12 space-x-4">
+                    <div class="flex flex-col items-center md:items-start mb-8 md:mb-0">
+                        <div class="flex items-center space-x-2 mb-3"><img src="/logo-aura.svg" alt="Aura Logo"
+                                class="h-16 w-16 transition-all p-1 hover:bg-neutral-900 hover:dark:bg-neutral-900 rounded-xl">
+                        </div>
+                        <p class="text-muted-foreground text-sm text-center md:text-left max-w-sm">AI landing page
+                            builder that creates stunning designs in seconds. No design skills needed. Export to HTML
+                            &amp; Figma. Trusted by 177,000+ users worldwide.</p>
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 text-sm">
+                        <div class="flex flex-col items-start">
+                            <h3 class="font-thin mb-3 text-[10px] text-neutral-500">PRODUCT</h3>
+                            <ul class="space-y-2 text-muted-foreground">
+                                <li><a href="/create"
+                                        class="hover:text-foreground transition-colors relative group">Create<span
+                                            class="absolute left-0 bottom-[-1px] w-0 h-[1px] bg-foreground transition-all group-hover:w-full"></span></a>
+                                </li>
+                                <li><a href="/browse"
+                                        class="hover:text-foreground transition-colors relative group">Templates<span
+                                            class="absolute left-0 bottom-[-1px] w-0 h-[1px] bg-foreground transition-all group-hover:w-full"></span></a>
+                                </li>
+                                <li><a href="/components"
+                                        class="hover:text-foreground transition-colors relative group">Components<span
+                                            class="absolute left-0 bottom-[-1px] w-0 h-[1px] bg-foreground transition-all group-hover:w-full"></span></a>
+                                </li>
+                                <li><a href="/assets"
+                                        class="hover:text-foreground transition-colors relative group">Assets<span
+                                            class="absolute left-0 bottom-[-1px] w-0 h-[1px] bg-foreground transition-all group-hover:w-full"></span></a>
+                                </li>
+                                <li><a href="/pricing"
+                                        class="hover:text-foreground transition-colors relative group">Pricing<span
+                                            class="absolute left-0 bottom-[-1px] w-0 h-[1px] bg-foreground transition-all group-hover:w-full"></span></a>
+                                </li>
+                                <li><a href="/changelog"
+                                        class="hover:text-foreground transition-colors relative group">Changelog<span
+                                            class="absolute left-0 bottom-[-1px] w-0 h-[1px] bg-foreground transition-all group-hover:w-full"></span></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="flex flex-col items-start">
+                            <h3 class="font-thin mb-3 text-[10px] text-neutral-500">RESOURCES</h3>
+                            <ul class="space-y-2 text-muted-foreground">
+                                <li><a href="/learn/tips-for-prompting"
+                                        class="hover:text-foreground transition-colors relative group">Introduction<span
+                                            class="absolute left-0 bottom-[-1px] w-0 h-[1px] bg-foreground transition-all group-hover:w-full"></span></a>
+                                </li>
+                                <li><a href="/learn/how-to-prompt"
+                                        class="hover:text-foreground transition-colors relative group">How to
+                                        Prompt<span
+                                            class="absolute left-0 bottom-[-1px] w-0 h-[1px] bg-foreground transition-all group-hover:w-full"></span></a>
+                                </li>
+                                <li><a href="/learn/how-to-design"
+                                        class="hover:text-foreground transition-colors relative group">How to Edit<span
+                                            class="absolute left-0 bottom-[-1px] w-0 h-[1px] bg-foreground transition-all group-hover:w-full"></span></a>
+                                </li>
+                                <li><a href="/learn/seo-settings"
+                                        class="hover:text-foreground transition-colors relative group">SEO Settings<span
+                                            class="absolute left-0 bottom-[-1px] w-0 h-[1px] bg-foreground transition-all group-hover:w-full"></span></a>
+                                </li>
+                                <li><a href="/sell-templates"
+                                        class="hover:text-foreground transition-colors relative group">Sell
+                                        Templates<span
+                                            class="absolute left-0 bottom-[-1px] w-0 h-[1px] bg-foreground transition-all group-hover:w-full"></span></a>
+                                </li>
+                                <li><a href="/affiliates"
+                                        class="hover:text-foreground transition-colors relative group">Affiliates<span
+                                            class="absolute left-0 bottom-[-1px] w-0 h-[1px] bg-foreground transition-all group-hover:w-full"></span></a>
+                                </li>
+                                <li><a href="/learn/faq"
+                                        class="hover:text-foreground transition-colors relative group">FAQ<span
+                                            class="absolute left-0 bottom-[-1px] w-0 h-[1px] bg-foreground transition-all group-hover:w-full"></span></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="flex flex-col items-start">
+                            <h3 class="font-thin mb-3 text-[10px] text-neutral-500">WHAT WE USE</h3>
+                            <ul class="space-y-2 text-muted-foreground">
+                                <li><a href="https://mobbin.com/?via=designcode"
+                                        class="hover:text-foreground transition-colors relative group"
+                                        target="_blank">Mobbin<span
+                                            class="absolute left-0 bottom-[-1px] w-0 h-[1px] bg-foreground transition-all group-hover:w-full"></span></a>
+                                </li>
+                                <li><a href="https://neuform.ai"
+                                        class="hover:text-foreground transition-colors relative group"
+                                        target="_blank">HTML Designs<span
+                                            class="absolute left-0 bottom-[-1px] w-0 h-[1px] bg-foreground transition-all group-hover:w-full"></span></a>
+                                </li>
+                                <li><a href="https://designcode.io"
+                                        class="hover:text-foreground transition-colors relative group"
+                                        target="_blank">Courses<span
+                                            class="absolute left-0 bottom-[-1px] w-0 h-[1px] bg-foreground transition-all group-hover:w-full"></span></a>
+                                </li>
+                                <li><a href="https://designcodeui.com"
+                                        class="hover:text-foreground transition-colors relative group"
+                                        target="_blank">UI Kit<span
+                                            class="absolute left-0 bottom-[-1px] w-0 h-[1px] bg-foreground transition-all group-hover:w-full"></span></a>
+                                </li>
+                                <li><a href="https://dreamcut.ai"
+                                        class="hover:text-foreground transition-colors relative group"
+                                        target="_blank">Screen Recording<span
+                                            class="absolute left-0 bottom-[-1px] w-0 h-[1px] bg-foreground transition-all group-hover:w-full"></span></a>
+                                </li>
+                                <li><a href="https://angle.sh"
+                                        class="hover:text-foreground transition-colors relative group"
+                                        target="_blank">Mockups<span
+                                            class="absolute left-0 bottom-[-1px] w-0 h-[1px] bg-foreground transition-all group-hover:w-full"></span></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="flex flex-col items-start">
+                            <h3 class="font-thin mb-3 text-[10px] text-neutral-500">CONNECT</h3>
+                            <ul class="space-y-2 text-muted-foreground">
+                                <li><a href="/privacy"
+                                        class="hover:text-foreground transition-colors relative group">Privacy<span
+                                            class="absolute left-0 bottom-[-1px] w-0 h-[1px] bg-foreground transition-all group-hover:w-full"></span></a>
+                                </li>
+                                <li><a href="/terms"
+                                        class="hover:text-foreground transition-colors relative group">Terms<span
+                                            class="absolute left-0 bottom-[-1px] w-0 h-[1px] bg-foreground transition-all group-hover:w-full"></span></a>
+                                </li>
+                                <li><a href="mailto:meng@designcode.io"
+                                        class="hover:text-foreground transition-colors relative group">Support<span
+                                            class="absolute left-0 bottom-[-1px] w-0 h-[1px] bg-foreground transition-all group-hover:w-full"></span></a>
+                                </li>
+                                <li><a href="mailto:meng@designcode.io"
+                                        class="hover:text-foreground transition-colors relative group">Report Issue<span
+                                            class="absolute left-0 bottom-[-1px] w-0 h-[1px] bg-foreground transition-all group-hover:w-full"></span></a>
+                                </li>
+                                <li><a href="https://www.linkedin.com/in/mengto"
+                                        class="hover:text-foreground transition-colors relative group">LinkedIn<span
+                                            class="absolute left-0 bottom-[-1px] w-0 h-[1px] bg-foreground transition-all group-hover:w-full"></span></a>
+                                </li>
+                                <li><a href="https://x.com/mengto"
+                                        class="hover:text-foreground transition-colors relative group">X<span
+                                            class="absolute left-0 bottom-[-1px] w-0 h-[1px] bg-foreground transition-all group-hover:w-full"></span></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="border-t border-border/30 pt-8 flex flex-col md:flex-row justify-between items-center">
+                    <div
+                        class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4 order-2 md:order-1">
+                        <p class="text-xs text-neutral-500">© 2026 Aura. All rights reserved. <a
+                                href="http://designcode.io/cursor" target="_blank"
+                                class="underline hover:text-foreground transition-colors">Made with Cursor</a>.</p>
+                        <div
+                            class="relative flex h-6 w-auto bg-neutral-50 dark:bg-neutral-900 px-0.5 py-1 rounded-full border border-neutral-200/50 dark:border-neutral-800 hover:border-neutral-200 dark:hover:border-neutral-700 mt-2 md:mt-0">
+                            <div
+                                class="absolute h-[20px] w-6 top-[1px] bg-white dark:bg-neutral-700 rounded-full transition-all duration-200 ease-in-out shadow-beautiful-md translate-x-[49px]">
+                            </div><button
+                                class="relative -top-[1px] -left-[1px] z-10 flex items-center justify-center h-4 w-6 rounded-full transition-colors text-neutral-500 hover:text-neutral-900 dark:hover:text-white"
+                                aria-label="Light mode" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                    height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun h-3 w-3">
+                                    <circle cx="12" cy="12" r="4"></circle>
+                                    <path d="M12 2v2"></path>
+                                    <path d="M12 20v2"></path>
+                                    <path d="m4.93 4.93 1.41 1.41"></path>
+                                    <path d="m17.66 17.66 1.41 1.41"></path>
+                                    <path d="M2 12h2"></path>
+                                    <path d="M20 12h2"></path>
+                                    <path d="m6.34 17.66-1.41 1.41"></path>
+                                    <path d="m19.07 4.93-1.41 1.41"></path>
+                                </svg></button><button
+                                class="relative -top-[1px] left-[1px] z-10 flex items-center justify-center h-4 w-6 rounded-full transition-colors text-neutral-500 hover:text-neutral-900 dark:hover:text-white"
+                                aria-label="System theme" type="button"><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                    class="lucide lucide-monitor h-3 w-3">
+                                    <rect width="20" height="14" x="2" y="3" rx="2"></rect>
+                                    <line x1="8" x2="16" y1="21" y2="21"></line>
+                                    <line x1="12" x2="12" y1="17" y2="21"></line>
+                                </svg></button><button
+                                class="relative -top-[1px] left-[1px] z-10 flex items-center justify-center h-4 w-6 rounded-full transition-colors text-neutral-900 dark:text-white"
+                                aria-label="Dark mode" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                    height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon h-3 w-3">
+                                    <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+                                </svg></button>
+                        </div>
+                    </div>
+                    <div class="flex space-x-6 mb-4 md:mb-0 order-1 md:order-2"><a href="https://x.com/mengto"
+                            target="_blank"
+                            class="text-muted-foreground hover:text-foreground transition-colors bg-neutral-100 dark:bg-neutral-900 rounded-xl p-2 border border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700"><span
+                                class="sr-only">Twitter</span><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-twitter h-4 w-4">
+                                <path
+                                    d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z">
+                                </path>
+                            </svg></a><a href="https://youtube.com/@designcodeteam" target="_blank"
+                            class="text-muted-foreground hover:text-foreground transition-colors bg-neutral-100 dark:bg-neutral-900 rounded-xl p-2 border border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700"><span
+                                class="sr-only">YouTube</span><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-youtube h-4 w-4">
+                                <path
+                                    d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17">
+                                </path>
+                                <path d="m10 15 5-3-5-3z"></path>
+                            </svg></a><a href="https://www.linkedin.com/in/mengto" target="_blank"
+                            class="text-muted-foreground hover:text-foreground transition-colors bg-neutral-100 dark:bg-neutral-900 rounded-xl p-2 border border-neutral-200 dark:border-neutral-800 hover:border-neutral-300 dark:hover:border-neutral-700"><span
+                                class="sr-only">LinkedIn</span><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-linkedin h-4 w-4">
+                                <path
+                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                                </path>
+                                <rect width="4" height="12" x="2" y="9"></rect>
+                                <circle cx="4" cy="4" r="2"></circle>
+                            </svg></a></div>
+                </div>
+            </div>
+        </footer>
+        <div role="region" aria-label="Notifications (F8)" tabindex="-1" style="pointer-events: none;">
+            <ol tabindex="-1"
+                class="fixed top-8 left-1/2 -translate-x-1/2 z-[100] flex max-h-screen flex-col-reverse p-4 max-w-[420px]"
+                style=""></ol>
+        </div>
+    </div>
+
+
+    <div id="screenity-ui">
+        <div class="screenity-shadow-dom">
+            <div>
+                <div class="screenity-scrollbar"></div>
+                <div class="screenity-scrollbar"></div>
+            </div>
+            <style type="text/css">
+                #screenity-ui,
+                #screenity-ui div {
+                    background-color: unset;
+                    padding: unset;
+                    width: unset;
+                    box-shadow: unset;
+                    display: unset;
+                    margin: unset;
+                    border-radius: unset;
+                }
+
+                .screenity-outline {
+                    position: absolute;
+                    z-index: 99999999999;
+                    border: 2px solid #3080F8;
+                    outline-offset: -2px;
+                    pointer-events: none;
+                    border-radius: 5px !important;
+                }
+
+                .screenity-blur {
+                    filter: blur(10px) !important;
+                }
+
+                .screenity-shadow-dom * {
+                    transition: unset;
+                }
+
+                .screenity-shadow-dom .TooltipContent {
+                    border-radius: 30px !important;
+                    background-color: #29292F !important;
+                    padding: 10px 15px !important;
+                    font-size: 12px;
+                    margin-bottom: 10px !important;
+                    bottom: 100px;
+                    line-height: 1;
+                    font-family: 'Satoshi-Medium', sans-serif;
+                    z-index: 99999999 !important;
+                    color: #FFF;
+                    box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px !important;
+                    user-select: none;
+                    transition: opacity 0.3 ease-in-out;
+                    will-change: transform, opacity;
+                    animation-duration: 400ms;
+                    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+                    will-change: transform, opacity;
+                }
+
+                .screenity-shadow-dom .hide-tooltip {
+                    display: none !important;
+                }
+
+                .screenity-shadow-dom .tooltip-tall {
+                    margin-bottom: 20px;
+                }
+
+                .screenity-shadow-dom .tooltip-small {
+                    margin-bottom: 5px;
+                }
+
+                .screenity-shadow-dom .TooltipContent[data-state='delayed-open'][data-side='top'] {
+                    animation-name: screenity-slideDownAndFade;
+                }
+
+                .screenity-shadow-dom .TooltipContent[data-state='delayed-open'][data-side='right'] {
+                    animation-name: screenity-slideLeftAndFade;
+                }
+
+                .screenity-shadow-dom.TooltipContent[data-state='delayed-open'][data-side='bottom'] {
+                    animation-name: screenity-slideUpAndFade;
+                }
+
+                .screenity-shadow-dom.TooltipContent[data-state='delayed-open'][data-side='left'] {
+                    animation-name: screenity-slideRightAndFade;
+                }
+
+                @keyframes screenity-slideUpAndFade {
+                    from {
+                        opacity: 0;
+                        transform: translateY(2px);
+                    }
+
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+
+                @keyframes screenity-slideRightAndFade {
+                    from {
+                        opacity: 0;
+                        transform: translateX(-2px);
+                    }
+
+                    to {
+                        opacity: 1;
+                        transform: translateX(0);
+                    }
+                }
+
+                @keyframes screenity-slideDownAndFade {
+                    from {
+                        opacity: 0;
+                        transform: translateY(-2px);
+                    }
+
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+
+                @keyframes screenity-slideLeftAndFade {
+                    from {
+                        opacity: 0;
+                        transform: translateX(2px);
+                    }
+
+                    to {
+                        opacity: 1;
+                        transform: translateX(0);
+                    }
+                }
+
+                #screenity-ui [data-radix-popper-content-wrapper] {
+                    z-index: 999999999999 !important;
+                }
+
+                .screenity-shadow-dom .CanvasContainer {
+                    position: fixed;
+                    pointer-events: all !important;
+                    top: 0px !important;
+                    left: 0px !important;
+                    z-index: 99999999999 !important;
+                }
+
+                .screenity-shadow-dom .canvas {
+                    position: fixed;
+                    top: 0px !important;
+                    left: 0px !important;
+                    z-index: 99999999999 !important;
+                    background: transparent !important;
+                }
+
+                .screenity-shadow-dom .canvas-container {
+                    top: 0px !important;
+                    left: 0px !important;
+                    z-index: 99999999999;
+                    position: fixed !important;
+                    background: transparent !important;
+                }
+
+                .ScreenityDropdownMenuContent {
+                    z-index: 99999999999 !important;
+                    min-width: 200px;
+                    background-color: white;
+                    margin-top: 4px;
+                    margin-right: 8px;
+                    padding-top: 12px;
+                    padding-bottom: 12px;
+                    border-radius: 15px;
+                    font-family: 'Satoshi-Medium', sans-serif;
+                    color: #29292F;
+                    box-shadow: 0px 10px 38px -10px rgba(22, 23, 24, 0.35),
+                        0px 10px 20px -15px rgba(22, 23, 24, 0.2);
+                    animation-duration: 400ms;
+                    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+                    will-change: transform, opacity;
+                }
+
+                .ScreenityDropdownMenuContent[data-side="top"] {
+                    animation-name: screenity-slideDownAndFade;
+                }
+
+                .ScreenityDropdownMenuContent[data-side="right"] {
+                    animation-name: screenity-slideLeftAndFade;
+                }
+
+                .ScreenityDropdownMenuContent[data-side="bottom"] {
+                    animation-name: screenity-slideUpAndFade;
+                }
+
+                .ScreenityDropdownMenuContent[data-side="left"] {
+                    animation-name: screenity-slideRightAndFade;
+                }
+
+                .ScreenityItemIndicator {
+                    position: absolute;
+                    right: 12px;
+                    width: 18px;
+                    height: 18px;
+                    background: #3080F8;
+                    border-radius: 50%;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                .ScreenityDropdownMenuItem,
+                .ScreenityDropdownMenuRadioItem {
+                    font-size: 14px;
+                    line-height: 1;
+                    display: flex;
+                    align-items: center;
+                    height: 40px;
+                    padding: 0 5px;
+                    position: relative;
+                    padding-left: 22px;
+                    padding-right: 22px;
+                    user-select: none;
+                    outline: none;
+                }
+
+                .ScreenityDropdownMenuItem:hover {
+                    background-color: #F6F7FB !important;
+                    cursor: pointer;
+                }
+
+                .ScreenityDropdownMenuItem[data-disabled] {
+                    color: #6E7684 !important;
+                    cursor: not-allowed;
+                    background-color: #F6F7FB !important;
+                }
+            </style>
+        </div>
+    </div>
+    <div id="give-freely-root-mbnbehikldjhnfehhnaidhjhoofhpehk" class="give-freely-root"
+        data-extension-id="mbnbehikldjhnfehhnaidhjhoofhpehk" data-extension-name="CSS Peeper" style="display: block;">
+    </div>
+</body>
+
+</html>

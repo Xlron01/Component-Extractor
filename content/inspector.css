@@ -1,0 +1,6 @@
+.smart-ui-inspector-hover {
+  outline: 2px solid #3b82f6 !important;
+  outline-offset: -2px !important;
+  cursor: crosshair !important;
+  background-color: rgba(59, 130, 246, 0.1) !important;
+}
