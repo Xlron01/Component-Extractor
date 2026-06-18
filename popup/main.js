@@ -43,6 +43,42 @@ document.addEventListener('DOMContentLoaded', () => {
     URL.revokeObjectURL(url);
   });
 
+  // ── Download Full Page HTML ───────────────────────────────────────────────
+  const downloadPageBtn = document.getElementById('downloadPageBtn');
+  downloadPageBtn.addEventListener('click', async () => {
+    try {
+      const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+      if (!tab) return;
+
+      chrome.scripting.executeScript({
+        target: { tabId: tab.id },
+        func: () => {
+          return '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+        }
+      }, (results) => {
+        if (chrome.runtime.lastError || !results || !results[0]) {
+          alert('Cannot download this page. Try refreshing the tab.');
+          return;
+        }
+
+        const pageHtml = results[0].result;
+        const blob = new Blob([pageHtml], { type: 'text/html' });
+        const url  = URL.createObjectURL(blob);
+        const a    = document.createElement('a');
+        a.href     = url;
+        
+        // Clean up file name from special characters
+        const safeName = (tab.title || 'page').replace(/[^a-z0-9]/gi, '_').toLowerCase();
+        a.download = `${safeName}.html`;
+        a.click();
+        URL.revokeObjectURL(url);
+      });
+    } catch (err) {
+      console.error('Failed to download full page:', err);
+      alert('Failed to download page HTML.');
+    }
+  });
+
   // ── Inspect Button toggle ─────────────────────────────────────────────────
   inspectBtn.addEventListener('click', async () => {
     isInspecting = !isInspecting;

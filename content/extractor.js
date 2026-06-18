@@ -2,13 +2,10 @@ if (typeof window.suidExtractorInitialized === 'undefined') {
 window.suidExtractorInitialized = true;
 
 // ═══════════════════════════════════════════════════════════════════════════════
-//  Smart UI Decompiler — Hybrid Extraction Engine
-//
-//  Mode A │ Iframe / Sandbox context  → extract full document (safest, lossless)
-//  Mode B │ Regular website top-frame → isolate element + inline computed styles
+//  Smart UI Decompiler — Modular Extraction Engine (Processor Pipeline)
 // ═══════════════════════════════════════════════════════════════════════════════
 
-// ── Comprehensive style property allowlist for Mode B ─────────────────────────
+// ── Comprehensive style property allowlist ─────────────────────────────────────
 const STYLE_PROPS = [
   // Layout & Box Model
   'display','position','top','right','bottom','left','z-index','float','clear',
@@ -59,100 +56,219 @@ const STYLE_PROPS = [
 
 // Values that carry zero visual information — safe to skip
 const SKIP_VALUES = new Set([
-  'none','normal','auto','0px','0%','initial','unset','inherit',
-  'rgba(0, 0, 0, 0)','transparent','repeat','100%','start','left',
-  'disc','outside','visible','static','inline','content-box','separate',
-  'baseline','row','nowrap','0px 0px','top left',
+  'none','normal','initial','unset','inherit',
+  'rgba(0, 0, 0, 0)','transparent','repeat',
 ]);
 
-// ── MODE A: Full-document capture (iframes / sandboxes) ──────────────────────
-function extractFullDocument(element) {
-  const doc = element.ownerDocument;
-  return {
-    html: '<!DOCTYPE html>\n' + doc.documentElement.outerHTML,
-    css: '',
-    mode: 'full-document',
-  };
-}
+// ── Stop climbing when hitting editor wrappers / preview shells ───────────────
+function findLogicalComponent(element) {
+  let curr = element;
+  let lastValid = element;
 
-// ── MODE B: Standalone element with inlined computed styles ───────────────────
-function extractStandaloneElement(element) {
-  const elWindow = element.ownerDocument.defaultView || window;
+  while (curr && curr.tagName !== 'BODY' && curr.tagName !== 'HTML') {
+    const className = (curr.className || '').toString().toLowerCase();
+    const id = (curr.id || '').toString().toLowerCase();
 
-  // ── Helper to inline styles for a cloned tree ─────────────────────────────
-  let pseudoCSS = '';
-  function inlineElementStyles(origEl, cloneEl) {
-    const originals = [origEl, ...origEl.querySelectorAll('*')];
-    const clones    = [cloneEl,   ...cloneEl.querySelectorAll('*')];
-
-    originals.forEach((orig, i) => {
-      const cl = clones[i];
-      if (!cl || orig.nodeType !== Node.ELEMENT_NODE) return;
-
-      const computed = elWindow.getComputedStyle(orig);
-      let inlineStyle = '';
-
-      STYLE_PROPS.forEach(prop => {
-        const val = computed.getPropertyValue(prop);
-        if (val && !SKIP_VALUES.has(val.trim())) {
-          inlineStyle += `${prop}:${val};`;
-        }
-      });
-
-      for (let j = 0; j < computed.length; j++) {
-        const p = computed[j];
-        if (p.startsWith('--')) {
-          const v = computed.getPropertyValue(p).trim();
-          if (v) inlineStyle += `${p}:${v};`;
-        }
-      }
-
-      cl.setAttribute('style', inlineStyle);
-
-      const uid = `suid-${Math.random().toString(36).substr(2, 9)}`;
-      cl.setAttribute('data-suid', uid);
-
-      ['::before', '::after'].forEach(pseudo => {
-        const ps      = elWindow.getComputedStyle(orig, pseudo);
-        const content = ps.getPropertyValue('content');
-        if (!content || content === 'none' || content === 'normal' || content === '""' || content === "''") return;
-
-        let rules = `content:${content};`;
-        STYLE_PROPS.forEach(prop => {
-          const val = ps.getPropertyValue(prop);
-          if (val && !SKIP_VALUES.has(val.trim())) rules += `${prop}:${val};`;
-        });
-        pseudoCSS += `[data-suid="${uid}"]${pseudo}{${rules}}\n`;
-      });
-    });
-  }
-
-  // ── 1. Find a containing parent wrapper to scan for background iframes ──────
-  let parent = element.parentElement;
-  let wrapper = null;
-  while (parent && parent.tagName !== 'BODY' && parent.tagName !== 'HTML') {
-    const className = parent.className || '';
+    // Stop-words representing editor layouts or sandboxes
     if (
-      className.includes('wrapper') ||
-      className.includes('container') ||
-      className.includes('section') ||
-      ['SECTION', 'HEADER', 'FOOTER', 'MAIN', 'ARTICLE'].includes(parent.tagName)
+      className.includes('w-designer') ||
+      className.includes('w-renderer') ||
+      className.includes('designer-shell') ||
+      className.includes('preview-shell') ||
+      className.includes('editor-wrapper') ||
+      className.includes('framer-preview') ||
+      className.includes('sandbox-wrapper') ||
+      id.includes('designer') ||
+      id.includes('editor')
     ) {
-      wrapper = parent;
       break;
     }
-    parent = parent.parentElement;
-  }
-  if (!wrapper && element.parentElement && element.parentElement.tagName !== 'BODY') {
-    wrapper = element.parentElement;
+
+    const isLogicalWrapper =
+      className.includes('wrapper') ||
+      className.includes('container') ||
+      className.includes('component') ||
+      className.includes('section') ||
+      className.includes('hero') ||
+      ['SECTION', 'ARTICLE', 'HEADER', 'FOOTER', 'MAIN', 'NAV'].includes(curr.tagName);
+
+    if (isLogicalWrapper) {
+      lastValid = curr;
+      // If we hit a core structural tag, stop climbing immediately
+      if (['SECTION', 'ARTICLE', 'HEADER', 'FOOTER', 'MAIN'].includes(curr.tagName)) {
+        break;
+      }
+    }
+
+    curr = curr.parentElement;
   }
 
-  // ── 2. Scan wrapper for background iframe with negative z-index ───────────
-  let bgContainer = null;
-  if (wrapper) {
+  return lastValid;
+}
+
+// ── PROCESSOR 1: Relative Path Processor ──────────────────────────────────────
+const RelativePathProcessor = {
+  name: 'RelativePathProcessor',
+  async process(context) {
+    const baseURI = context.ownerDocument.baseURI;
+    const resolveURL = (url) => {
+      try {
+        return new URL(url, baseURI).href;
+      } catch {
+        return url;
+      }
+    };
+
+    const processElement = (el) => {
+      if (!el || el.nodeType !== Node.ELEMENT_NODE) return;
+      if (el.hasAttribute('src')) {
+        const src = el.getAttribute('src');
+        if (src && !src.startsWith('data:') && !src.startsWith('blob:')) {
+          el.setAttribute('src', resolveURL(src));
+        }
+      }
+      if (el.hasAttribute('href')) {
+        const href = el.getAttribute('href');
+        if (href && !href.startsWith('#') && !href.startsWith('javascript:')) {
+          el.setAttribute('href', resolveURL(href));
+        }
+      }
+    };
+
+    processElement(context.clonedElement);
+    context.clonedElement.querySelectorAll('[src], [href]').forEach(processElement);
+
+    if (context.iframeBackground) {
+      processElement(context.iframeBackground);
+      context.iframeBackground.querySelectorAll('[src], [href]').forEach(processElement);
+    }
+  }
+};
+
+// ── PROCESSOR 2: Tailwind CSS Autodetect & Inject ─────────────────────────────
+const TailwindProcessor = {
+  name: 'TailwindProcessor',
+  async process(context) {
+    let hasTailwind = false;
+
+    // Check script tags for Tailwind CDN
+    const scripts = context.ownerDocument.querySelectorAll('script');
+    for (const script of scripts) {
+      if (script.src && script.src.includes('tailwindcss')) {
+        hasTailwind = true;
+        break;
+      }
+    }
+
+    // Check stylesheets for Tailwind-specific rules
+    if (!hasTailwind) {
+      try {
+        Array.from(context.ownerDocument.styleSheets).forEach(sheet => {
+          try {
+            Array.from(sheet.cssRules || []).forEach(rule => {
+              if (rule.cssText && rule.cssText.includes('--tw-')) {
+                hasTailwind = true;
+              }
+            });
+          } catch {}
+        });
+      } catch {}
+    }
+
+    if (hasTailwind) {
+      context.extraScripts.push('https://cdn.tailwindcss.com');
+    }
+  }
+};
+
+// ── PROCESSOR 3: Unicorn Studio Animations Bundle ─────────────────────────────
+const UnicornProcessor = {
+  name: 'UnicornProcessor',
+  async process(context) {
+    const queryEl = (el) => {
+      if (!el) return [];
+      const res = [];
+      if (el.hasAttribute && el.hasAttribute('data-us-project')) res.push(el);
+      return res.concat(Array.from(el.querySelectorAll('[data-us-project]')));
+    };
+
+    const elements = queryEl(context.clonedElement);
+    if (context.iframeBackground) {
+      elements.push(...queryEl(context.iframeBackground));
+    }
+
+    if (elements.length === 0) return;
+
+    let hasUnicornStudio = false;
+
+    for (const el of elements) {
+      const projectId = el.getAttribute('data-us-project');
+      if (!projectId) continue;
+
+      try {
+        const sceneData = await new Promise((resolve, reject) => {
+          chrome.runtime.sendMessage({ action: 'fetchUnicornScene', projectId }, (res) => {
+            if (chrome.runtime.lastError) {
+              reject(chrome.runtime.lastError);
+            } else if (res && res.success) {
+              resolve(res.data);
+            } else {
+              reject(new Error(res ? res.error : 'Unknown background error'));
+            }
+          });
+        });
+
+        if (sceneData) {
+          hasUnicornStudio = true;
+          const scriptId = `us-scene-${projectId}`;
+
+          el.removeAttribute('data-us-project');
+          el.setAttribute('data-us-project-src', scriptId);
+          el.removeAttribute('data-us-initialized');
+          el.removeAttribute('data-scene-id');
+          el.querySelectorAll('canvas').forEach(canvas => canvas.remove());
+
+          const script = context.ownerDocument.createElement('script');
+          script.type = 'application/json';
+          script.id = scriptId;
+          script.textContent = JSON.stringify(sceneData);
+
+          el.parentNode.insertBefore(script, el.nextSibling);
+        }
+      } catch (err) {
+        console.warn(`[SUID] UnicornProcessor failed for project ${projectId}:`, err);
+      }
+    }
+
+    if (hasUnicornStudio) {
+      context.extraScripts.push('https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.4.29/dist/unicornStudio.umd.js');
+      context.extraStyles.push(`
+        /* Bootstrap Unicorn Studio offline initialization */
+        document.addEventListener('DOMContentLoaded', function () {
+          if (window.UnicornStudio && !window.UnicornStudio.isInitialized) {
+            UnicornStudio.init();
+            window.UnicornStudio.isInitialized = true;
+          }
+        });
+      `);
+    }
+  }
+};
+
+// ── PROCESSOR 4: Spline 3D & Hidden Background Iframe Recovery ───────────────
+const SplineProcessor = {
+  name: 'SplineProcessor',
+  async process(context) {
+    const element = context.originalElement;
+    const elWindow = context.ownerWindow;
+
+    // Use findLogicalComponent here to bound the climbing brake for Spline backgrounds
+    const wrapper = findLogicalComponent(element);
+    if (!wrapper || wrapper === element) return;
+
+    let bgContainer = null;
     const iframes = wrapper.querySelectorAll('iframe');
     for (const iframe of iframes) {
-      // Don't detect if the iframe is a child of the clicked element itself
       if (element.contains(iframe)) continue;
 
       let curr = iframe;
@@ -167,35 +283,180 @@ function extractStandaloneElement(element) {
       }
       if (bgContainer) break;
     }
-  }
 
-  // ── 3. Clone and process foreground element ───────────────────────────────
-  const clone = element.cloneNode(true);
-  inlineElementStyles(element, clone);
+    if (bgContainer) {
+      const bgClone = bgContainer.cloneNode(true);
+      context.iframeBackground = bgClone;
+      context.originalIframeBackground = bgContainer;
 
-  // ── 4. Clone and process background iframe container if found ──────────────
-  let bgClone = null;
-  if (bgContainer) {
-    bgClone = bgContainer.cloneNode(true);
-    inlineElementStyles(bgContainer, bgClone);
+      // Override negative z-index so background iframe becomes visible
+      bgClone.style.setProperty('z-index', '0', 'important');
 
-    // Override background z-index to 0 so it becomes visible on local preview
-    bgClone.style.setProperty('z-index', '0', 'important');
-
-    // Ensure the foreground component clone stacks on top of the background iframe
-    const computedPosition = elWindow.getComputedStyle(element).position;
-    if (computedPosition === 'static') {
-      clone.style.setProperty('position', 'relative');
-      clone.style.setProperty('z-index', '1');
-    } else {
-      const computedZIndex = elWindow.getComputedStyle(element).zIndex;
-      if (computedZIndex === 'auto' || parseInt(computedZIndex) <= 0) {
-        clone.style.setProperty('z-index', '1');
+      // Promote foreground elements on top of the iframe background
+      const clone = context.clonedElement;
+      const computedPosition = elWindow.getComputedStyle(element).position;
+      if (computedPosition === 'static') {
+        clone.style.setProperty('position', 'relative', 'important');
+        clone.style.setProperty('z-index', '1', 'important');
+      } else {
+        const computedZIndex = elWindow.getComputedStyle(element).zIndex;
+        if (computedZIndex === 'auto' || parseInt(computedZIndex) <= 0) {
+          clone.style.setProperty('z-index', '1', 'important');
+        }
       }
     }
   }
+};
 
-  // ── 5. Generate font faces ────────────────────────────────────────────────
+// ── PROCESSOR 5: Absolute Positioning Styles & Dimensional Flattening ─────────
+const StyleFlatteningProcessor = {
+  name: 'StyleFlatteningProcessor',
+  async process(context) {
+    const elWindow = context.ownerWindow;
+
+    const inlineStylesForTree = (origEl, cloneEl) => {
+      const originals = [origEl, ...origEl.querySelectorAll('*')];
+      const clones    = [cloneEl,   ...cloneEl.querySelectorAll('*')];
+
+      originals.forEach((orig, i) => {
+        const cl = clones[i];
+        if (!cl || orig.nodeType !== Node.ELEMENT_NODE) return;
+
+        const computed = elWindow.getComputedStyle(orig);
+        const position = computed.getPropertyValue('position');
+
+        let inlineStyle = '';
+
+        STYLE_PROPS.forEach(prop => {
+          const val = computed.getPropertyValue(prop);
+          if (val && !SKIP_VALUES.has(val.trim())) {
+            inlineStyle += `${prop}:${val};`;
+          }
+        });
+
+        // Inline CSS custom properties
+        for (let j = 0; j < computed.length; j++) {
+          const p = computed[j];
+          if (p.startsWith('--')) {
+            const v = computed.getPropertyValue(p).trim();
+            if (v) inlineStyle += `${p}:${v};`;
+          }
+        }
+
+        cl.setAttribute('style', inlineStyle);
+
+        // Tech Lead Check: Read live layout from originalElement, apply to clonedElement
+        if (position === 'absolute' || position === 'fixed') {
+          const rect = orig.getBoundingClientRect();
+          cl.style.setProperty('position', position, 'important');
+          cl.style.setProperty('width', `${rect.width}px`, 'important');
+          cl.style.setProperty('height', `${rect.height}px`, 'important');
+
+          ['top', 'left', 'right', 'bottom'].forEach(prop => {
+            const val = computed.getPropertyValue(prop);
+            if (val && val !== 'auto') {
+              cl.style.setProperty(prop, val, 'important');
+            }
+          });
+        }
+
+        // Pseudo-elements handling
+        const uid = `suid-${Math.random().toString(36).substr(2, 9)}`;
+        cl.setAttribute('data-suid', uid);
+
+        ['::before', '::after'].forEach(pseudo => {
+          const ps      = elWindow.getComputedStyle(orig, pseudo);
+          const content = ps.getPropertyValue('content');
+          if (!content || content === 'none' || content === 'normal' || content === '""' || content === "''") return;
+
+          let rules = `content:${content};`;
+          STYLE_PROPS.forEach(prop => {
+            const val = ps.getPropertyValue(prop);
+            if (val && !SKIP_VALUES.has(val.trim())) rules += `${prop}:${val};`;
+          });
+          context.pseudoCSS += `[data-suid="${uid}"]${pseudo}{${rules}}\n`;
+        });
+      });
+    };
+
+    const rootOrig = context.originalElement;
+    const rootClone = context.clonedElement;
+    const rootComputed = elWindow.getComputedStyle(rootOrig);
+    const rootRect = rootOrig.getBoundingClientRect();
+
+    // 1. Flatten all child elements inside the tree first
+    inlineStylesForTree(rootOrig, rootClone);
+
+    // 2. Freeze the outer Layout structure of the main Root Container
+    rootClone.style.setProperty('width', `${rootRect.width}px`, 'important');
+    rootClone.style.setProperty('max-width', '100%', 'important');
+    rootClone.style.setProperty('box-sizing', 'border-box', 'important');
+
+    const ml = rootComputed.getPropertyValue('margin-left');
+    const mr = rootComputed.getPropertyValue('margin-right');
+    if (ml && mr) {
+      rootClone.style.setProperty('margin-left', ml, 'important');
+      rootClone.style.setProperty('margin-right', mr, 'important');
+    }
+
+    const display = rootComputed.getPropertyValue('display');
+    if (display) {
+      rootClone.style.setProperty('display', display, 'important');
+    }
+
+    // Flatten style of background element if present
+    if (context.iframeBackground && context.originalIframeBackground) {
+      inlineStylesForTree(context.originalIframeBackground, context.iframeBackground);
+    }
+  }
+};
+
+// ── MODE A: Full-document capture (iframes / sandboxes) ──────────────────────
+function extractFullDocument(element) {
+  const doc = element.ownerDocument;
+  return {
+    html: '<!DOCTYPE html>\n' + doc.documentElement.outerHTML,
+    css: '',
+    mode: 'full-document',
+  };
+}
+
+// ── MODE B: Pipeline-based standalone element extraction ─────────────────────
+async function extractStandaloneElement(element) {
+  const elWindow = element.ownerDocument.defaultView || window;
+  const clone = element.cloneNode(true);
+
+  // Initialize modular processing context
+  const context = {
+    originalElement: element,
+    clonedElement: clone,
+    ownerDocument: element.ownerDocument,
+    ownerWindow: elWindow,
+    iframeBackground: null,
+    originalIframeBackground: null,
+    pseudoCSS: '',
+    extraStyles: [],
+    extraScripts: []
+  };
+
+  // Run processor pipeline sequentially
+  const pipeline = [
+    SplineProcessor,
+    RelativePathProcessor,
+    TailwindProcessor,
+    UnicornProcessor,
+    StyleFlatteningProcessor
+  ];
+
+  for (const processor of pipeline) {
+    try {
+      await processor.process(context);
+    } catch (err) {
+      console.error(`[SUID] Error in processor ${processor.name}:`, err);
+    }
+  }
+
+  // ── Harvest custom @font-face rules ─────────────────────────────────────────
   let fontCSS = '';
   try {
     Array.from(element.ownerDocument.styleSheets).forEach(sheet => {
@@ -207,27 +468,59 @@ function extractStandaloneElement(element) {
     });
   } catch { /* no access */ }
 
-  const bodyPadding = bgClone ? '0' : '16px';
+  // ── Extract global variables from document root & body to prevent shock ───
+  const htmlComputed = elWindow.getComputedStyle(element.ownerDocument.documentElement);
+  const bodyComputed = elWindow.getComputedStyle(element.ownerDocument.body || element.ownerDocument.documentElement);
+  let globalVars = '';
+
+  [htmlComputed, bodyComputed].forEach(computed => {
+    for (let i = 0; i < computed.length; i++) {
+      const prop = computed[i];
+      if (prop.startsWith('--')) {
+        const val = computed.getPropertyValue(prop).trim();
+        if (val) {
+          globalVars += `  ${prop}: ${val};\n`;
+        }
+      }
+    }
+  });
+
+  const rootVarsCSS = globalVars ? `:root {\n${globalVars}}\n` : '';
+
+  // Extract body/html original attributes
+  const htmlClasses = element.ownerDocument.documentElement.className || '';
+  const bodyClasses = (element.ownerDocument.body && element.ownerDocument.body.className) || '';
+  const htmlStyle = element.ownerDocument.documentElement.getAttribute('style') || '';
+  const bodyStyle = (element.ownerDocument.body && element.ownerDocument.body.getAttribute('style')) || '';
+
+  const bodyPadding = context.iframeBackground ? '0' : '16px';
   const styleBlock = [
     '*, *::before, *::after { box-sizing: border-box; }',
     `body { margin: 0; padding: ${bodyPadding}; }`,
-    fontCSS    ? `/* ── Web Fonts ── */\n${fontCSS}`       : '',
-    pseudoCSS  ? `/* ── Pseudo-elements ── */\n${pseudoCSS}` : '',
+    rootVarsCSS,
+    fontCSS             ? `/* ── Web Fonts ── */\n${fontCSS}` : '',
+    context.pseudoCSS   ? `/* ── Pseudo-elements ── */\n${context.pseudoCSS}` : '',
+    ...context.extraStyles
   ].filter(Boolean).join('\n');
 
-  // If we have a background clone, wrap it with foreground clone in a relative wrapper
+  // Embed extra scripts
+  const scriptTags = context.extraScripts
+    .map(src => `<script src="${src}"></script>`)
+    .join('\n  ');
+
+  // If we have background recovery, bundle background clone and main clone in relative wrapper
   let bodyContent = clone.outerHTML;
-  if (bgClone) {
+  if (context.iframeBackground) {
     bodyContent = `
   <div style="position: relative; width: 100%; min-height: 100vh;">
-    ${bgClone.outerHTML}
+    ${context.iframeBackground.outerHTML}
     ${clone.outerHTML}
   </div>`;
   }
 
   const fullHtml =
 `<!DOCTYPE html>
-<html>
+<html class="${htmlClasses}" style="${htmlStyle}">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -235,8 +528,9 @@ function extractStandaloneElement(element) {
   <style>
 ${styleBlock.split('\n').map(l => '    ' + l).join('\n')}
   </style>
+  ${scriptTags}
 </head>
-<body>
+<body class="${bodyClasses}" style="${bodyStyle}">
   ${bodyContent}
 </body>
 </html>`;
@@ -244,7 +538,7 @@ ${styleBlock.split('\n').map(l => '    ' + l).join('\n')}
   return { html: fullHtml, css: '', mode: 'standalone' };
 }
 
-// ── Offline Unicorn Studio Scene Processor ────────────────────────────────────
+// ── Offline Unicorn Studio Scene Processor (For Mode A / Iframes) ──────────────
 async function processUnicornStudioScenes(htmlString, isStandaloneMode) {
   const parser = new DOMParser();
   const doc = parser.parseFromString(htmlString, 'text/html');
@@ -274,22 +568,17 @@ async function processUnicornStudioScenes(htmlString, isStandaloneMode) {
         hasUnicornStudio = true;
         const scriptId = `us-scene-${projectId}`;
 
-        // Modify container attributes to point to offline script element
         el.removeAttribute('data-us-project');
         el.setAttribute('data-us-project-src', scriptId);
         el.removeAttribute('data-us-initialized');
         el.removeAttribute('data-scene-id');
-
-        // Remove any already-rendered canvas elements so library recreates it
         el.querySelectorAll('canvas').forEach(canvas => canvas.remove());
 
-        // Create script tag containing scene JSON
         const script = doc.createElement('script');
         script.type = 'application/json';
         script.id = scriptId;
         script.textContent = JSON.stringify(sceneData);
 
-        // Insert adjacent to container
         el.parentNode.insertBefore(script, el.nextSibling);
       }
     } catch (err) {
@@ -300,7 +589,6 @@ async function processUnicornStudioScenes(htmlString, isStandaloneMode) {
   if (hasUnicornStudio) {
     const head = doc.head;
     if (head) {
-      // 1. Inject DOMContentLoaded listener to bootstrap Unicorn Studio offline
       const initScript = doc.createElement('script');
       initScript.textContent = `
         document.addEventListener('DOMContentLoaded', function () {
@@ -312,7 +600,6 @@ async function processUnicornStudioScenes(htmlString, isStandaloneMode) {
       `;
       head.appendChild(initScript);
 
-      // 2. In Mode B (standalone), also ensure library script is loaded
       if (isStandaloneMode) {
         let scriptExists = false;
         doc.querySelectorAll('script').forEach(s => {
@@ -332,33 +619,36 @@ async function processUnicornStudioScenes(htmlString, isStandaloneMode) {
   return '<!DOCTYPE html>\n' + doc.documentElement.outerHTML;
 }
 
-// ── Master extractor — decides Mode A vs Mode B (Asynchronous) ────────────────
+// ── Master extractor — decides Mode A vs Mode B ──────────────────────────────
 async function extractElementData(element) {
-  const ownerDoc  = element.ownerDocument;
+  // Use the exact element clicked by the user to ensure precise isolation & avoid overfetching siblings
+  const targetElement = element;
+
+  const ownerDoc  = targetElement.ownerDocument;
   const ownerWin  = ownerDoc.defaultView;
 
-  // Mode A: element lives in a sub-frame (iframe) or the extractor itself
-  // was called from inside a sandboxed temp-iframe context
   const isInsideFrame =
     ownerWin &&
-    ownerWin.self !== ownerWin.top; // true when inside any iframe
+    ownerWin.self !== ownerWin.top;
 
   let rawResult;
   let isStandaloneMode = false;
 
   if (isInsideFrame) {
-    rawResult = extractFullDocument(element);
+    rawResult = extractFullDocument(targetElement);
   } else {
-    rawResult = extractStandaloneElement(element);
+    rawResult = await extractStandaloneElement(targetElement);
     isStandaloneMode = true;
   }
 
-  // Process any embedded WebGL Unicorn Studio animations to bundle them offline
-  try {
-    const processedHtml = await processUnicornStudioScenes(rawResult.html, isStandaloneMode);
-    rawResult.html = processedHtml;
-  } catch (err) {
-    console.error('[SUID] Error processing Unicorn Studio scenes:', err);
+  // Fallback scenes conversion for Mode A
+  if (isInsideFrame) {
+    try {
+      const processedHtml = await processUnicornStudioScenes(rawResult.html, isStandaloneMode);
+      rawResult.html = processedHtml;
+    } catch (err) {
+      console.error('[SUID] Error processing Unicorn Studio scenes:', err);
+    }
   }
 
   return rawResult;
@@ -367,4 +657,3 @@ async function extractElementData(element) {
 window.extractElementData = extractElementData;
 
 } // End of initialization guard
-

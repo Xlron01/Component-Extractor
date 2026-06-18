@@ -7,26 +7,20 @@ let hoveredElement = null;
 // ── Central deactivation — the ONLY place that kills the inspector ────────────
 function deactivateInspector() {
   isInspectorActive = false;
-  // Remove-before-add pattern prevents double-registration on fast toggles
   document.removeEventListener('mouseover', handleMouseOver, true);
   document.removeEventListener('mouseout',  handleMouseOut,  true);
   document.removeEventListener('click',     handleClick,     true);
-  // Remove cursor WITHOUT setting 'default' – empty string removes inline override
-  // so the page's own CSS wins. 'default' would fight with the page's cursor rules.
   document.body.style.removeProperty('cursor');
   clearHover();
 }
 
 // ── Listen for MAIN-world CustomEvent broadcast (fired by background.js) ──────
-// This reaches ALL frames reliably in MV3 regardless of frame hierarchy.
 document.addEventListener('__suid_deactivate__', deactivateInspector);
 
 // ── Listen for messages from background / popup ───────────────────────────────
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-
   if (request.action === 'toggleInspector') {
     if (request.isActive) {
-      // Guard: remove first so we never register the same listener twice
       document.removeEventListener('mouseover', handleMouseOver, true);
       document.removeEventListener('mouseout',  handleMouseOut,  true);
       document.removeEventListener('click',     handleClick,     true);
@@ -43,7 +37,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     return true;
   }
 
-  // Fallback direct stop (sent by background for same-frame deactivation)
   if (request.action === 'stopInspector') {
     deactivateInspector();
     sendResponse({ success: true });
@@ -51,17 +44,24 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   }
 });
 
-// ── Element targeting — drills through transparent overlays ──────────────────
+// ── Precise Element targeting — ignores transparent overlay shells & extensions ──
 function getTargetElement(e) {
   const elements = document.elementsFromPoint(e.clientX, e.clientY);
   for (const el of elements) {
     if (el === document.body || el === document.documentElement) return el;
+    
+    // Ignore Chrome extension elements or inspector overlays
+    if (el.id === '__suid_toast__' || el.tagName.toLowerCase().startsWith('plasmo-')) {
+      continue;
+    }
+
     const style = (el.ownerDocument.defaultView || window).getComputedStyle(el);
     const isShield =
       style.backgroundColor === 'rgba(0, 0, 0, 0)' &&
       style.backgroundImage === 'none' &&
       el.textContent.trim() === '' &&
       el.children.length === 0;
+    
     if (isShield) continue;
     return el;
   }
@@ -79,6 +79,7 @@ function handleMouseOver(e) {
   hoveredElement.classList.add('smart-ui-inspector-hover');
 }
 
+// ── Hover cleanup ─────────────────────────────────────────────────────────────
 function handleMouseOut(e) {
   if (!isInspectorActive) return;
   clearHover();
@@ -121,12 +122,11 @@ function finishExtraction(data) {
   chrome.storage.local.set({ extractedData: data }, () => {
     showToast();
     chrome.runtime.sendMessage({ action: 'elementExtracted', data }).catch(() => {});
-    // ↓ Ask background to broadcast deactivation to every frame in this tab
     chrome.runtime.sendMessage({ action: 'stopAllInspectors' }).catch(() => {});
   });
 }
 
-// ── Click handler ─────────────────────────────────────────────────────────────
+// ── Click handler — quarantines clicked element and isolates it ───────────────
 function handleClick(e) {
   if (!isInspectorActive) return;
   e.stopPropagation();
@@ -134,7 +134,7 @@ function handleClick(e) {
 
   const target = getTargetElement(e);
   clearHover();
-  deactivateInspector(); // immediately stop THIS frame
+  deactivateInspector();
 
   const tag = target.tagName.toLowerCase();
 
@@ -142,14 +142,12 @@ function handleClick(e) {
   if (tag === 'iframe' && target.hasAttribute('srcdoc')) {
     const srcdoc = target.getAttribute('srcdoc');
     const tmpFrame = document.createElement('iframe');
-    // Hidden but still rendered so getComputedStyle works correctly
     tmpFrame.style.cssText =
       'position:fixed;width:1280px;height:800px;opacity:0;pointer-events:none;z-index:-9999;top:0;left:0;';
     tmpFrame.srcdoc = srcdoc;
     document.body.appendChild(tmpFrame);
 
     tmpFrame.addEventListener('load', () => {
-      // Give CDN scripts (Tailwind, etc.) time to fully execute
       setTimeout(() => {
         const inner = tmpFrame.contentDocument.body;
         const firstReal =
@@ -165,7 +163,7 @@ function handleClick(e) {
         });
       }, 600);
     });
-    return; // async path
+    return;
   }
 
   // ── Case 2: same-origin live iframe ─────────────────────────────────────────
@@ -183,7 +181,7 @@ function handleClick(e) {
     }
   }
 
-  // ── Case 3: normal element on any website ────────────────────────────────────
+  // ── Case 3: normal element on any website (isolates the exact element clicked) ──
   extractElementData(target)
     .then(finishExtraction)
     .catch(err => console.error('[SUID] Extraction failed:', err));
