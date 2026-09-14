@@ -2,6 +2,8 @@
 
 A professional Chrome extension designed for engineering and harvesting visual UI components from any website, compiling them into clean, standalone HTML documents that are Tailwind CSS-compatible and run 100% offline.
 
+> 📐 **The engineering story** — reversing sites that actively resist extraction (Framer, Webflow, Unicorn WebGL, Spline 3D) — is documented challenge-by-challenge in **[CASE_STUDY.md](CASE_STUDY.md)**: CSP bypass via message passing, offline WebGL scene recovery, style flattening, and layout freezing.
+
 ---
 
 ## 🎯 Core Features
